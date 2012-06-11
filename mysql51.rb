@@ -7,6 +7,11 @@ class Mysql51 < Formula
 
   depends_on 'readline'
 
+  fails_with :llvm do
+    build 2335
+    cause "https://github.com/mxcl/homebrew/issues/issue/144"
+  end
+
   def options
     [
       ['--with-tests', "Keep tests when installing."],
@@ -23,8 +28,6 @@ class Mysql51 < Formula
   end
 
   def install
-    fails_with_llvm "https://github.com/mxcl/homebrew/issues/issue/144", :build => 2335
-
     # See: http://dev.mysql.com/doc/refman/5.1/en/configure-options.html
     # These flags may not apply to gcc 4+
     ENV['CXXFLAGS'] = ENV['CXXFLAGS'].gsub "-fomit-frame-pointer", ""

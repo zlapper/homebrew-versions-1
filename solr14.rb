@@ -1,8 +1,8 @@
 require 'formula'
 
 class Solr14 < Formula
-  url 'ftp://ftp.fu-berlin.de/unix/www/apache/lucene/solr/1.4.1/apache-solr-1.4.1.tgz'
   homepage 'http://lucene.apache.org/solr/'
+  url 'ftp://ftp.fu-berlin.de/unix/www/apache/lucene/solr/1.4.1/apache-solr-1.4.1.tgz'
   md5 '258a020ed8c3f44e13b09e8ae46a1c84'
 
   def script; <<-EOS.undent

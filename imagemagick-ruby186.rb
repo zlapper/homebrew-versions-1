@@ -18,9 +18,9 @@ def x11?
 end
 
 class ImagemagickRuby186 < Formula
+  homepage 'http://www.imagemagick.org'
   url 'http://image_magick.veidrodis.com/image_magick/ImageMagick-6.5.9-8.tar.bz2'
   md5 '89892e250e81fad51b4b2a1f816987e6'
-  homepage 'http://www.imagemagick.org'
 
   depends_on 'jpeg'
   depends_on 'libwmf' => :optional if x11?
@@ -61,7 +61,6 @@ class ImagemagickRuby186 < Formula
   def install
     ENV.libpng
     ENV.deparallelize
-    ENV.O3 # takes forever otherwise
 
     fix_configure
 

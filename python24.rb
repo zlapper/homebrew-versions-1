@@ -1,8 +1,8 @@
 require 'formula'
 
 class Python24 < Formula
-  url 'http://www.python.org/ftp/python/2.4.6/Python-2.4.6.tgz'
   homepage 'http://www.python.org/download/releases/2.4.6/'
+  url 'http://www.python.org/ftp/python/2.4.6/Python-2.4.6.tgz'
   md5 '7564b2b142b1b8345cd5358b7aaaa482'
 
   depends_on 'gdbm' => :optional

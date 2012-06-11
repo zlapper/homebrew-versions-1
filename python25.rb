@@ -42,8 +42,8 @@ def as_framework?
 end
 
 class Python25 < Formula
-  url 'http://www.python.org/ftp/python/2.5.6/Python-2.5.6.tgz'
   homepage 'http://www.python.org/'
+  url 'http://www.python.org/ftp/python/2.5.6/Python-2.5.6.tgz'
   md5 'd1d9c83928561addf11d00b22a18ca50'
 
   depends_on 'sqlite' => :optional    # Prefer over OS X's older version

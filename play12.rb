@@ -1,8 +1,8 @@
 require 'formula'
 
 class Play12 < Formula
-  url 'http://download.playframework.org/releases/play-1.2.4.zip'
   homepage 'http://www.playframework.org/'
+  url 'http://download.playframework.org/releases/play-1.2.4.zip'
   md5 'ec8789f8cc02927ece536d102f5e649e'
 
   def install

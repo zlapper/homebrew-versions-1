@@ -16,7 +16,7 @@ class Openssl098 < Formula
     ENV.deparallelize # Parallel compilation fails
     system "make"
     system "make test"
-    system "make install MANDIR=#{man} MANSUFFIX=ssl"
+    system "make", "install", "MANDIR=#{man}", "MANSUFFIX=ssl"
   end
 
   def caveats; <<-EOS.undent

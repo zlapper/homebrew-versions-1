@@ -5,17 +5,15 @@ def fortran?
 end
 
 class Hdf4 < Formula
+  homepage 'http://www.hdfgroup.org'
   url 'http://www.hdfgroup.org/ftp/HDF/releases/HDF4.2.6/src/hdf-4.2.6.tar.bz2'
   md5 'eed281ded7f81f6ba1a3b1b1d5109bfe'
-  homepage 'http://www.hdfgroup.org'
 
   depends_on 'cmake' => :build
   depends_on 'szip'
 
   def options
-    [
-      ['--enable-fortran', 'Build Fortran libraries']
-    ]
+    [['--enable-fortran', 'Build Fortran libraries']]
   end
 
   def install
@@ -39,8 +37,7 @@ class Hdf4 < Formula
     ]
     args.concat %W[-DHDF4_BUILD_FORTRAN=ON -DCMAKE_Fortran_MODULE_DIRECTORY=#{include}] if fortran?
 
-    Dir.mkdir 'build'
-    Dir.chdir 'build' do
+    mkdir 'build' do
       system 'cmake', '..', *args
       system 'make install'
     end
