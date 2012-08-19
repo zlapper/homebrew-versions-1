@@ -58,8 +58,15 @@ class Python25 < Formula
     ]
   end
 
-  # Skip binaries so modules will load; skip lib because it is mostly Python files
+  # Skip binaries so modules will load;
+  # Skip lib because it is mostly Python files
   skip_clean ['bin', 'lib']
+
+  def patches
+    {:p0 => %W[
+      https://raw.github.com/collective/buildout.python/f38feb898691669d66b225fabda29b8f8f7c714f/src/python-2.5-darwin-10.6.patch
+    ]}
+  end
 
   def site_packages
     # The Cellar location of site-packages
@@ -157,9 +164,4 @@ class Python25 < Formula
     s = framework_caveats + s if as_framework?
     return s
   end
-
-  def patches
-    { :p0 => ["https://github.com/collective/buildout.python/raw/master/src/python-2.5-darwin-10.6.patch"]}
-  end
-
 end
