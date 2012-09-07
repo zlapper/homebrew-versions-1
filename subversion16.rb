@@ -22,7 +22,7 @@ class Subversion16 < Formula
   depends_on 'pkg-config' => :build
 
   # On Snow Leopard, build a new neon. For Leopard, the deps above include this.
-  depends_on 'neon' if MacOS.snow_leopard?
+  depends_on 'neon' if MacOS.version >= :snow_leopard
 
   def options
     [
@@ -82,7 +82,7 @@ class Subversion16 < Formula
 
     ENV.universal_binary if build_universal?
 
-    if MacOS.leopard?
+    if MacOS.version == :leopard
       setup_leopard
     else
       check_neon_arch if build_universal?
@@ -123,14 +123,14 @@ class Subversion16 < Formula
       # Remove hard-coded ppc target, add appropriate ones
       if build_universal?
         arches = "-arch x86_64 -arch i386"
-      elsif MacOS.leopard?
+      elsif MacOS.version == :leopard
         arches = "-arch i386"
       else
         arches = "-arch x86_64"
       end
 
       # Use version-appropriate system Perl
-     if MacOS.leopard?
+     if MacOS.version == :leopard
         perl_version = "5.8.8"
       else
         perl_version = "5.10.0"
