@@ -3,7 +3,7 @@ require 'formula'
 class Unison232 < Formula
   homepage 'http://www.cis.upenn.edu/~bcpierce/unison/'
   url 'http://www.seas.upenn.edu/~bcpierce/unison//download/releases/unison-2.32.52/unison-2.32.52.tar.gz'
-  md5 '0701f095c1721776a0454b94607eda48'
+  sha1 '68ea5709de4fcc2f9aef7b01b24637503b61b5ac'
 
   depends_on 'objective-caml'
 

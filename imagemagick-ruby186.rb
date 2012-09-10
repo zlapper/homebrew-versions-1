@@ -14,7 +14,7 @@ end
 class ImagemagickRuby186 < Formula
   homepage 'http://www.imagemagick.org'
   url 'http://image_magick.veidrodis.com/image_magick/ImageMagick-6.5.9-8.tar.bz2'
-  md5 '89892e250e81fad51b4b2a1f816987e6'
+  sha1 'bb292ff860cebf76bfed9df68289abb76d408e34'
 
   depends_on 'jpeg'
   depends_on 'libwmf' => :optional
