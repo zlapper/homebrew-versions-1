@@ -24,9 +24,7 @@ class ImagemagickRuby186 < Formula
   depends_on 'ghostscript' => :recommended if ghostscript_srsly?
   depends_on :libpng
 
-  def skip_clean? path
-    path.extname == '.la'
-  end
+  skip_clean :la
 
   def options
     [['--with-ghostscript', 'Enable ghostscript support']]
