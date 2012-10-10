@@ -9,7 +9,7 @@ class Postgis15 < Formula
   url 'http://postgis.refractions.net/download/postgis-1.5.3.tar.gz'
   sha1 'e8c572e0258ba760a67b7f717bdc8321b9f6cd58'
 
-  depends_on 'postgresql'
+  depends_on 'postgresql9'
   depends_on 'proj'
   depends_on 'geos'
 
@@ -27,7 +27,7 @@ class Postgis15 < Formula
 
   def install
     ENV.deparallelize
-    postgresql = Formula.factory 'postgresql'
+    postgresql = Formula.factory 'postgresql9'
 
     args = [
       "--disable-dependency-tracking",
@@ -95,7 +95,7 @@ class Postgis15 < Formula
   end
 
   def caveats;
-    postgresql = Formula.factory 'postgresql'
+    postgresql = Formula.factory 'postgresql9'
 
     <<-EOS.undent
       To create a spatially-enabled database, see the documentation:
