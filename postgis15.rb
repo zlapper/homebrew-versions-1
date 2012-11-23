@@ -21,10 +21,6 @@ class Postgis15 < Formula
     ]
   end
 
-  # PostGIS command line tools intentionally have unused symbols in
-  # them---these are callbacks for liblwgeom.
-  skip_clean :all
-
   def install
     ENV.deparallelize
     postgresql = Formula.factory 'postgresql9'
