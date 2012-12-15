@@ -21,9 +21,6 @@ class Gcc45 < Formula
   depends_on 'mpfr'
   depends_on 'ecj' if build.include? 'enable-java' or build.include? 'enable-all-languages'
 
-  # Dont strip compilers.
-  skip_clean :all
-
   def install
     # Force 64-bit on systems that use it. Build failures reported for some
     # systems when this is not done.
