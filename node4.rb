@@ -7,14 +7,11 @@ class Node4 < Formula
 
   head 'https://github.com/joyent/node.git'
 
-  # Leopard OpenSSL is not new enough, so use our keg-only one
+  option 'enable-debug', 'Build with debugger hooks'
+
   depends_on 'openssl' if MacOS.version == :leopard
 
   fails_with(:llvm) { build 2326 }
-
-  def options
-    [["--enable-debug", "Build with debugger hooks."]]
-  end
 
   def install
     inreplace 'wscript' do |s|
@@ -23,7 +20,7 @@ class Node4 < Formula
     end
 
     args = ["--prefix=#{prefix}"]
-    args << "--debug" if ARGV.include? '--enable-debug'
+    args << "--debug" if build.include? 'enable-debug'
 
     system "./configure", *args
     system "make install"
