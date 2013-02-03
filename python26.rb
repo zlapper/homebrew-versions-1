@@ -34,7 +34,7 @@ COMMENTS
 
 
 # Was a Framework build requested?
-def build_framework?; ARGV.include? '--framework'; end
+def build_framework?; build.include? 'framework'; end
 
 # Are we installed or installing as a Framework?
 def as_framework?
@@ -46,17 +46,13 @@ class Python26 < Formula
   url 'http://www.python.org/ftp/python/2.6.8/Python-2.6.8.tgz'
   sha1 '104304943eb9f0a34d255f1849bc00f67d3d272f'
 
-  depends_on 'sqlite' => :optional    # Prefer over OS X's older version
-  depends_on 'readline' => :optional  # Prefer over OS X's libedit
-  depends_on 'gdbm' => :optional
+  option :universal
+  option 'framework', 'Do a Framework build instead of a UNIX-style build'
+  option 'static', 'Build static libraries'
 
-  def options
-    [
-      ["--framework", "Do a 'Framework' build instead of a UNIX-style build."],
-      ["--universal", "Build for both 32 & 64 bit Intel."],
-      ["--static", "Build static libraries."]
-    ]
-  end
+  depends_on 'sqlite' => :recommended
+  depends_on 'readline' => :recommended
+  depends_on 'gdbm' => :recommended
 
   # Skip binaries so modules will load; skip lib because it is mostly Python files
   skip_clean ['bin', 'lib']
@@ -78,7 +74,7 @@ class Python26 < Formula
   end
 
   def validate_options
-    if build_framework? and ARGV.include? "--static"
+    if build_framework? and build.include? "static"
       onoe "Cannot specify both framework and static."
       exit 99
     end
@@ -95,14 +91,14 @@ class Python26 < Formula
 
     args = ["--prefix=#{prefix}"]
 
-    if ARGV.include? '--universal'
+    if build.universal?
       args << "--enable-universalsdk=/" << "--with-universal-archs=intel"
     end
 
     if build_framework?
       args << "--enable-framework=#{prefix}/Frameworks"
     else
-      args << "--enable-shared" unless ARGV.include? '--static'
+      args << "--enable-shared" unless build.include? 'static'
     end
 
     system "./configure", *args
