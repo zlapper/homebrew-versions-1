@@ -36,7 +36,7 @@ class Python32 < Formula
   sha1 '4c2d562a0681ba27bc920500050e2f08de224311'
   VER='3.2'  # The <major>.<minor> is used so often.
 
-  depends_on TkCheck.new
+  depends_on TkCheck
   depends_on 'pkg-config' => :build
   depends_on 'readline' => :recommended
   depends_on 'sqlite' => :recommended
@@ -220,7 +220,7 @@ class Python32 < Formula
           #   A setuptools.pth and/or easy-install.pth sitting either in
           #   /Library/Python/#{VER}/site-packages or in
           #   ~/Library/Python/#{VER}/site-packages can inject the
-          #   /System's Python site-packages. 
+          #   /System's Python site-packages.
           #   See: https://github.com/mxcl/homebrew/issues/14712
           sys.path = [ p for p in sys.path if not p.startswith('/System') ]
 
