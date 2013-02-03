@@ -21,9 +21,6 @@ class Ruby192 < Formula
     build 2326
   end
 
-  # Stripping breaks dynamic linking
-  skip_clean :all
-
   def install
     system "autoconf" if build.head?
 
