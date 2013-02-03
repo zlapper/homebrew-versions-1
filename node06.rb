@@ -14,9 +14,6 @@ class Node06 < Formula
     build 2326
   end
 
-  # Stripping breaks dynamic loading
-  skip_clean :all
-
   def options
     [["--enable-debug", "Build with debugger hooks."]]
   end
