@@ -14,6 +14,11 @@ class Postgresql9 < Formula
   option 'no-perl', 'Build without Perl support'
   option 'enable-dtrace', 'Build with DTrace support'
 
+  # Fix uuid-ossp build issues: http://archives.postgresql.org/pgsql-general/2012-07/msg00654.php
+  def patches
+    DATA
+  end
+
   def install
     ENV.libxml2 if MacOS.version >= :snow_leopard
 
@@ -166,3 +171,17 @@ To install gems without sudo, see the Homebrew wiki.
     EOPLIST
   end
 end
+
+__END__
+diff --git a/contrib/uuid-ossp/uuid-ossp.c b/contrib/uuid-ossp/uuid-ossp.c
+index d4fc62b..62b28ca 100644
+--- a/contrib/uuid-ossp/uuid-ossp.c
++++ b/contrib/uuid-ossp/uuid-ossp.c
+@@ -9,6 +9,7 @@
+  *-------------------------------------------------------------------------
+  */
+ 
++#define _XOPEN_SOURCE
+ #include "postgres.h"
+ #include "fmgr.h"
+ #include "utils/builtins.h"
