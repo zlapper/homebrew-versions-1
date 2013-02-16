@@ -25,7 +25,7 @@ class Coq83 < Formula
 
   head 'svn://scm.gforge.inria.fr/svn/coq/trunk'
 
-  depends_on TransitionalMode.new
+  depends_on TransitionalMode
   depends_on 'objective-caml'
   depends_on 'camlp5'
 
