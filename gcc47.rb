@@ -18,9 +18,16 @@ class Gcc47 < Formula
   option 'enable-objc', 'Enable Objective-C language support'
   option 'enable-objcxx', 'Enable Objective-C++ language support'
   option 'enable-all-languages', 'Enable all compilers and languages, except Ada'
-  option 'enable-nls', 'Build with native language support'
+  option 'enable-nls', 'Build with native language support (localization)'
   option 'enable-profiled-build', 'Make use of profile guided optimization when bootstrapping GCC'
   option 'enable-multilib', 'Build with multilib support'
+
+  depends_on 'gmp'
+  depends_on 'libmpc'
+  depends_on 'mpfr'
+  depends_on 'cloog'
+  depends_on 'isl'
+  depends_on 'ecj' if build.include? 'enable-java' or build.include? 'enable-all-languages'
 
   fails_with :clang do
     build 421
@@ -35,11 +42,6 @@ class Gcc47 < Formula
       Thanks!
       EOS
   end
-
-  depends_on 'gmp'
-  depends_on 'libmpc'
-  depends_on 'mpfr'
-  depends_on 'ecj' if build.include? 'enable-java' or build.include? 'enable-all-languages'
 
   def install
     # Force 64-bit on systems that use it. Build failures reported for some
@@ -58,6 +60,8 @@ class Gcc47 < Formula
     gmp = Formula.factory 'gmp'
     mpfr = Formula.factory 'mpfr'
     libmpc = Formula.factory 'libmpc'
+    cloog = Formula.factory 'cloog'
+    isl = Formula.factory 'isl'
 
     # Sandbox the GCC lib, libexec and include directories so they don't wander
     # around telling small children there is no Santa Claus. This results in a
@@ -78,10 +82,14 @@ class Gcc47 < Formula
       "--with-gmp=#{gmp.opt_prefix}",
       "--with-mpfr=#{mpfr.opt_prefix}",
       "--with-mpc=#{libmpc.opt_prefix}",
+      "--with-cloog=#{cloog.opt_prefix}",
+      "--with-isl=#{isl.opt_prefix}",
       "--with-system-zlib",
       "--enable-stage1-checking",
       "--enable-plugin",
-      "--enable-lto"
+      "--enable-lto",
+      # a no-op unless --HEAD is built because in head warnings will raise errs.
+      "--disable-werror"
     ]
 
     args << '--disable-nls' unless build.include? 'enable-nls'
