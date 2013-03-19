@@ -59,7 +59,7 @@ class ErlangR15 < Formula
             "--enable-shared-zlib",
             "--enable-smp-support"]
 
-    args << "--with-dynamic-trace=dtrace" unless MacOS.version == :leopard
+    args << "--with-dynamic-trace=dtrace" unless MacOS.version == :leopard or not MacOS::CLT.installed?
 
     unless build.include? 'disable-hipe'
       # HIPE doesn't strike me as that reliable on OS X
