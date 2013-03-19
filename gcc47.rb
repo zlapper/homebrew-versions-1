@@ -25,8 +25,6 @@ class Gcc47 < Formula
   depends_on 'gmp'
   depends_on 'libmpc'
   depends_on 'mpfr'
-  depends_on 'cloog'
-  depends_on 'isl'
   depends_on 'ecj' if build.include? 'enable-java' or build.include? 'enable-all-languages'
 
   fails_with :clang do
@@ -60,8 +58,6 @@ class Gcc47 < Formula
     gmp = Formula.factory 'gmp'
     mpfr = Formula.factory 'mpfr'
     libmpc = Formula.factory 'libmpc'
-    cloog = Formula.factory 'cloog'
-    isl = Formula.factory 'isl'
 
     # Sandbox the GCC lib, libexec and include directories so they don't wander
     # around telling small children there is no Santa Claus. This results in a
@@ -82,8 +78,6 @@ class Gcc47 < Formula
       "--with-gmp=#{gmp.opt_prefix}",
       "--with-mpfr=#{mpfr.opt_prefix}",
       "--with-mpc=#{libmpc.opt_prefix}",
-      "--with-cloog=#{cloog.opt_prefix}",
-      "--with-isl=#{isl.opt_prefix}",
       "--with-system-zlib",
       "--enable-stage1-checking",
       "--enable-plugin",
