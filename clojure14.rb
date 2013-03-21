@@ -40,7 +40,7 @@ class Clojure14 < Formula
     EOS
   end
 
-  def test
+  test do
     system "#{bin}/clj", "-e", '(println "Hello World")'
   end
 end

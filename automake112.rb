@@ -24,7 +24,7 @@ class Automake112 < Formula
     EOS
   end
 
-  def test
+  test do
     system "#{bin}/automake112", "--version"
   end
 end
