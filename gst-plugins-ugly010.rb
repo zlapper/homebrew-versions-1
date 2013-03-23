@@ -38,6 +38,13 @@ class GstPluginsUgly010 < Formula
   def install
     ENV.append "CFLAGS", "-no-cpp-precomp -funroll-loops -fstrict-aliasing"
 
+    args = %W[
+      --disable-debug
+      --disable-dependency-tracking
+      --prefix=#{prefix}
+      --mandir=#{man}
+    ]
+
     if build.with? "opencore-amr"
       # Fixes build error, missing includes.
       # https://github.com/mxcl/homebrew/issues/14078
@@ -45,11 +52,11 @@ class GstPluginsUgly010 < Formula
       wbcflags = `pkg-config --cflags opencore-amrwb`.chomp
       ENV['AMRNB_CFLAGS'] = nbcflags + "-I#{HOMEBREW_PREFIX}/include/opencore-amrnb"
       ENV['AMRWB_CFLAGS'] = wbcflags + "-I#{HOMEBREW_PREFIX}/include/opencore-amrwb"
+    else
+      args << "--disable-amrnb" << "--disable-amrwb"
     end
 
-    system "./configure", "--disable-debug", "--disable-dependency-tracking",
-                          "--prefix=#{prefix}",
-                          "--mandir=#{man}"
+    system "./configure", *args
     system "make"
     system "make install"
   end
