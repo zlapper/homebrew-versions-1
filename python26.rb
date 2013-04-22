@@ -32,15 +32,6 @@ to get the appropriate site-packages path.
 
 COMMENTS
 
-
-# Was a Framework build requested?
-def build_framework?; build.include? 'framework'; end
-
-# Are we installed or installing as a Framework?
-def as_framework?
-  (self.installed? and File.exists? prefix+"Frameworks/Python.framework") or build_framework?
-end
-
 class Python26 < Formula
   homepage 'http://www.python.org/'
   url 'http://www.python.org/ftp/python/2.6.8/Python-2.6.8.tgz'
@@ -56,6 +47,14 @@ class Python26 < Formula
 
   # Skip binaries so modules will load; skip lib because it is mostly Python files
   skip_clean ['bin', 'lib']
+
+  # Was a Framework build requested?
+  def build_framework?; build.include? 'framework'; end
+
+  # Are we installed or installing as a Framework?
+  def as_framework?
+    (self.installed? and File.exists? prefix+"Frameworks/Python.framework") or build_framework?
+  end
 
   def site_packages
     # The Cellar location of site-packages
