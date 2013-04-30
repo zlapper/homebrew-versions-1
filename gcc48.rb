@@ -2,7 +2,19 @@ require 'formula'
 
 class Gcc48 < Formula
   def arch
-    `uname -m`.chomp
+    if Hardware::CPU.type == :intel
+      if MacOS.prefer_64_bit?
+        'x86_64'
+      else
+        'i686'
+      end
+    elsif Hardware::CPU.type == :ppc
+      if MacOS.prefer_64_bit?
+        'ppc64'
+      else
+        'ppc'
+      end
+    end
   end
 
   def osmajor
