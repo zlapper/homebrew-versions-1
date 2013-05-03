@@ -128,7 +128,7 @@ class Mariadb10 < Formula
       <key>Label</key>
       <string>#{plist_name}</string>
       <key>Program</key>
-      <string>#{HOMEBREW_PREFIX}/bin/mysqld_safe</string>
+      <string>#{opt_prefix}/bin/mysqld_safe</string>
       <key>RunAtLoad</key>
       <true/>
       <key>WorkingDirectory</key>
