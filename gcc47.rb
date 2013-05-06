@@ -1,9 +1,5 @@
 require 'formula'
 
-# NOTE: GCC 4.6.0 adds the gccgo compiler for the Go language. However,
-# gccgo "is currently known to work on GNU/Linux and RTEMS. Solaris support
-# is in progress. It may or may not work on other platforms."
-
 class Gcc47 < Formula
   def arch
     if Hardware::CPU.type == :intel
@@ -42,9 +38,11 @@ class Gcc47 < Formula
   option 'enable-profiled-build', 'Make use of profile guided optimization when bootstrapping GCC'
   option 'enable-multilib', 'Build with multilib support'
 
-  depends_on 'gmp'
-  depends_on 'libmpc'
-  depends_on 'mpfr'
+  depends_on 'gmp4'
+  depends_on 'libmpc08'
+  depends_on 'mpfr2'
+  depends_on 'ppl011'
+  depends_on 'cloog-ppl015'
   depends_on 'ecj' if build.include? 'enable-java' or build.include? 'enable-all-languages'
 
   # Import patches from macports:
@@ -54,10 +52,6 @@ class Gcc47 < Formula
   def install
     # GCC will suffer build errors if forced to use a particular linker.
     ENV.delete 'LD'
-
-    gmp = Formula.factory 'gmp'
-    mpfr = Formula.factory 'mpfr'
-    libmpc = Formula.factory 'libmpc'
 
     if build.include? 'enable-all-languages'
       # Everything but Ada, which requires a pre-existing GCC Ada compiler
@@ -94,11 +88,15 @@ class Gcc47 < Formula
       # ...which are tagged with a suffix to distinguish them.
       "--enable-languages=#{languages.join(',')}",
       "--program-suffix=-#{version.to_s.slice(/\d\.\d/)}",
-      "--with-gmp=#{gmp.opt_prefix}",
-      "--with-mpfr=#{mpfr.opt_prefix}",
-      "--with-mpc=#{libmpc.opt_prefix}",
+      "--with-gmp=#{Formula.factory('gmp4').opt_prefix}",
+      "--with-mpfr=#{Formula.factory('mpfr2').opt_prefix}",
+      "--with-mpc=#{Formula.factory('libmpc08').opt_prefix}",
+      "--with-ppl=#{Formula.factory('ppl011').opt_prefix}",
+      "--with-cloog=#{Formula.factory('cloog-ppl015').opt_prefix}",
       "--with-system-zlib",
+      "--enable-libstdcxx-time=yes",
       "--enable-stage1-checking",
+      "--enable-checking=release",
       "--enable-plugin",
       "--enable-lto",
       # a no-op unless --HEAD is built because in head warnings will raise errs.
@@ -108,8 +106,7 @@ class Gcc47 < Formula
     args << '--disable-nls' unless build.include? 'enable-nls'
 
     if build.include? 'enable-java' or build.include? 'enable-all-languages'
-      ecj = Formula.factory 'ecj'
-      args << "--with-ecj-jar=#{ecj.opt_prefix}/share/java/ecj.jar"
+      args << "--with-ecj-jar=#{Formula.factory('ecj').opt_prefix}/share/java/ecj.jar"
     end
 
     if build.include? 'enable-multilib'
