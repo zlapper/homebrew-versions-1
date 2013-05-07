@@ -7,7 +7,7 @@ class Postgresql8 < Formula
 
   depends_on 'readline'
   depends_on 'libxml2' if MacOS.version == :leopard
-  depends_on 'ossp-uuid'
+  depends_on 'ossp-uuid' => :recommended
 
   option 'no-python', 'Build without Python support'
   option 'no-perl', 'Build without Perl support'
@@ -21,24 +21,31 @@ class Postgresql8 < Formula
   def install
     ENV.libxml2 if MacOS.version >= :snow_leopard
 
-    args = ["--disable-debug",
-            "--prefix=#{prefix}",
-            "--enable-thread-safety",
-            "--with-bonjour",
-            "--with-gssapi",
-            "--with-krb5",
-            "--with-openssl",
-            "--with-libxml", "--with-libxslt"]
+    args = %W[
+      --disable-debug
+      --prefix=#{prefix}
+      --datadir=#{share}/#{name}
+      --docdir=#{doc}
+      --enable-thread-safety
+      --with-bonjour
+      --with-gssapi
+      --with-krb5
+      --with-openssl
+      --with-libxml
+      --with-libxslt
+    ]
 
+    args << "--with-ossp-uuid" if build.with? 'ossp-uuid'
     args << "--with-python" unless build.include? 'no-python'
     args << "--with-perl" unless build.include? 'no-perl'
 
-    args << "--with-ossp-uuid"
-    ENV.append 'CFLAGS', `uuid-config --cflags`.strip
-    ENV.append 'LDFLAGS', `uuid-config --ldflags`.strip
-    ENV.append 'LIBS', `uuid-config --libs`.strip
+    if build.with? 'ossp-uuid'
+      ENV.append 'CFLAGS', `uuid-config --cflags`.strip
+      ENV.append 'LDFLAGS', `uuid-config --ldflags`.strip
+      ENV.append 'LIBS', `uuid-config --libs`.strip
+    end
 
-    if snow_leopard_64? and not build.include? 'no-python'
+    if MacOS.prefer_64_bit? and not build.include? 'no-python'
       args << "ARCHFLAGS='-arch x86_64'"
       check_python_arch
     end
@@ -78,28 +85,27 @@ class Postgresql8 < Formula
   end
 
   def caveats
-    s = <<-EOS
-To build plpython against a specific Python, set PYTHON prior to brewing:
-  PYTHON=/usr/local/bin/python  brew install postgresql
-See:
-  http://www.postgresql.org/docs/8.4/static/install-procedure.html
+    s = <<-EOS.undent
+      To build plpython against a specific Python, set PYTHON prior to brewing:
+        PYTHON=/usr/local/bin/python brew install postgresql
+      See:
+        http://www.postgresql.org/docs/8.4/static/install-procedure.html
 
 
-If this is your first install, create a database with:
-    initdb #{var}/postgres
-EOS
+      If this is your first install, create a database with:
+          initdb #{var}/postgres
+    EOS
 
-    if MacOS.prefer_64_bit? then
-      s << <<-EOS
-
-If you want to install the postgres gem, including ARCHFLAGS is recommended:
-    env ARCHFLAGS="-arch x86_64" gem install postgres
-
-To install gems without sudo, see the Homebrew wiki.
-      EOS
-    end
-
+    s << gem_caveats if MacOS.prefer_64_bit?
     return s
+  end
+
+  def gem_caveats; <<-EOS.undent
+    When installing the postgres gem, including ARCHFLAGS is recommended:
+      ARCHFLAGS="-arch x86_64" gem install pg
+
+    To install gems without sudo, see the Homebrew wiki.
+    EOS
   end
 
   plist_options :manual => "pg_ctl -D #{HOMEBREW_PREFIX}/var/postgres -l #{HOMEBREW_PREFIX}/var/postgres/server.log start"
