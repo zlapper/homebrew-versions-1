@@ -14,10 +14,7 @@ class Mysql51 < Formula
 
   depends_on 'readline'
 
-  fails_with :clang do
-    build 421
-    cause "Reported not building with clang as of 2011.06.27"
-  end
+  fails_with :clang
 
   def patches
     DATA
