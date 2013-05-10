@@ -8,9 +8,20 @@ class Openssl098 < Formula
   keg_only :provided_by_osx
 
   def install
-    system "./config", "--prefix=#{prefix}",
-                       "--openssldir=#{etc}/openssl",
-                       "zlib-dynamic", "shared"
+    args = %W[./Configure
+               --prefix=#{prefix}
+               --openssldir=#{etc}/openssl
+               zlib-dynamic
+               shared
+             ]
+
+    if MacOS.prefer_64_bit?
+      args << "darwin64-x86_64-cc" << "enable-ec_nistp_64_gcc_128"
+    else
+      args << "darwin-i386-cc"
+    end
+
+    system "perl", *args
 
     ENV.deparallelize # Parallel compilation fails
     system "make"
