@@ -11,6 +11,7 @@ class Hdf4 < Formula
   depends_on 'pkg-config' => :build
   depends_on 'szip'
   depends_on 'jpeg'
+  depends_on :fortran if build.include? 'enable-fortran'
 
   def patches
     # Fix a couple of buglets in CMakeLists that showed up post-4.2.6. These
@@ -19,7 +20,6 @@ class Hdf4 < Formula
   end
 
   def install
-    ENV.fortran if build.include? 'enable-fortran'
     ENV['SZIP_INSTALL'] = HOMEBREW_PREFIX
 
     args = std_cmake_args
