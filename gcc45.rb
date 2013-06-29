@@ -10,9 +10,9 @@ class Gcc45 < Formula
       end
     elsif Hardware::CPU.type == :ppc
       if MacOS.prefer_64_bit?
-        'ppc64'
+        'powerpc64'
       else
-        'ppc'
+        'powerpc'
       end
     end
   end
@@ -90,11 +90,14 @@ class Gcc45 < Formula
       "--enable-libstdcxx-time=yes",
       "--enable-stage1-checking",
       "--enable-checking=release",
-      "--enable-plugin",
       "--disable-lto",
       # a no-op unless --HEAD is built because in head warnings will raise errs.
       "--disable-werror"
     ]
+
+    # "Building GCC with plugin support requires a host that supports
+    # -fPIC, -shared, -ldl and -rdynamic."
+    args << "--enable-plugin" if MacOS.version > :tiger
 
     args << '--disable-nls' unless build.include? 'enable-nls'
 

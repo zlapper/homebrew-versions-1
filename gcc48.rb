@@ -10,9 +10,9 @@ class Gcc48 < Formula
       end
     elsif Hardware::CPU.type == :ppc
       if MacOS.prefer_64_bit?
-        'ppc64'
+        'powerpc64'
       else
-        'ppc'
+        'powerpc'
       end
     end
   end
@@ -43,6 +43,8 @@ class Gcc48 < Formula
   depends_on 'cloog'
   depends_on 'isl'
   depends_on 'ecj' if build.include? 'enable-java' or build.include? 'enable-all-languages'
+
+  fails_with :gcc_4_0
 
   def install
     # GCC will suffer build errors if forced to use a particular linker.
@@ -92,11 +94,14 @@ class Gcc48 < Formula
       "--enable-libstdcxx-time=yes",
       "--enable-stage1-checking",
       "--enable-checking=release",
-      "--enable-plugin",
       "--enable-lto",
       # a no-op unless --HEAD is built because in head warnings will raise errs.
       "--disable-werror"
     ]
+
+    # "Building GCC with plugin support requires a host that supports
+    # -fPIC, -shared, -ldl and -rdynamic."
+    args << "--enable-plugin" if MacOS.version > :tiger
 
     args << '--disable-nls' unless build.include? 'enable-nls'
 
