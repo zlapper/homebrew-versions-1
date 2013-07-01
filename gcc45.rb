@@ -36,6 +36,9 @@ class Gcc45 < Formula
   option 'enable-profiled-build', 'Make use of profile guided optimization when bootstrapping GCC'
   option 'enable-multilib', 'Build with multilib support'
 
+  # with system ld on Tiger, build fails with countless messages of:
+  # "relocation overflow for relocation entry"
+  depends_on :ld64
   depends_on 'gmp4'
   depends_on 'libmpc08'
   depends_on 'mpfr2'
