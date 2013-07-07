@@ -17,7 +17,7 @@ class Ppl011 < Formula
       "--prefix=#{prefix}",
       "--disable-dependency-tracking",
       "--enable-optimization=sspeed",
-      "--with-gmp=#{gmp4.opt_prefix}"
+      "--with-gmp-prefix=#{gmp4.opt_prefix}"
     ]
 
     system "./configure", *args
