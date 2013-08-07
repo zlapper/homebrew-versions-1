@@ -16,7 +16,6 @@ class Ppl011 < Formula
     args = [
       "--prefix=#{prefix}",
       "--disable-dependency-tracking",
-      "--enable-optimization=sspeed",
       "--with-gmp-prefix=#{gmp4.opt_prefix}"
     ]
 
