@@ -46,6 +46,15 @@ class Gcc45 < Formula
   depends_on 'cloog-ppl015'
   depends_on 'ecj' if build.include? 'enable-java' or build.include? 'enable-all-languages'
 
+  def patches
+    { # Patches from macports
+      :p0 => [
+        # Fix libffi for ppc
+        'http://trac.macports.org/export/110576/trunk/dports/lang/gcc45/files/ppc_fde_encoding.diff',
+      ]
+    }
+  end
+
   def install
     # GCC will suffer build errors if forced to use a particular linker.
     ENV.delete 'LD'
