@@ -171,7 +171,7 @@ class Llvm33 < Formula
       s += <<-EOS.undent
 
       To link to libc++ built here, please adjust your $CXX as following:
-      clang++-#{version} -stdlib=libc++ -nostdinc++ -I#{include_path} -L#{libs_path}
+      clang++-#{version} -stdlib=libc++ -nostdinc++ -I#{include_path} -L#{libs_path} -lc++
       EOS
     end
     s
