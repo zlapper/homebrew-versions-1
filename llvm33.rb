@@ -48,6 +48,7 @@ class Llvm33 < Formula
   depends_on 'gmp4'
   depends_on 'isl011'
   depends_on 'cloog018'
+  depends_on 'libffi' => :recommended
 
   env :std if build.universal?
 
@@ -104,6 +105,8 @@ class Llvm33 < Formula
     args << "--enable-shared" unless build.include? 'disable-shared'
 
     args << "--disable-assertions" if build.include? 'disable-assertions'
+
+    args << "--enable-libffi" if build.with? 'libffi'
 
     system './configure', *args
     system 'make', 'VERBOSE=1'
