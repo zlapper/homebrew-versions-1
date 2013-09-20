@@ -30,7 +30,7 @@ class Gcc47 < Formula
 
   option 'enable-cxx', 'Build the g++ compiler'
   option 'enable-fortran', 'Build the gfortran compiler'
-  option 'enable-java', 'Buld the gcj compiler'
+  option 'enable-java', 'Build the gcj compiler'
   option 'enable-objc', 'Enable Objective-C language support'
   option 'enable-objcxx', 'Enable Objective-C++ language support'
   option 'enable-all-languages', 'Enable all compilers and languages, except Ada'
