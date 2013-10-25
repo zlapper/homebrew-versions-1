@@ -34,7 +34,6 @@ class Gcc43 < Formula
   option 'enable-all-languages', 'Enable all compilers and languages, except Ada'
   option 'enable-nls', 'Build with native language support (localization)'
   option 'enable-profiled-build', 'Make use of profile guided optimization when bootstrapping GCC'
-  option 'enable-multilib', 'Build with multilib support'
 
   depends_on 'gmp4'
   depends_on 'mpfr2'
@@ -92,6 +91,8 @@ class Gcc43 < Formula
       "--enable-version-specific-runtime-libs",
       "--enable-stage1-checking",
       "--enable-checking=release",
+      # Multilib building is broken in GCC 4.3 on Darwin.
+      "--disable-multilib",
       # A no-op unless --HEAD is built because in head warnings will
       # raise errors. But still a good idea to include.
       "--disable-werror"
@@ -103,11 +104,6 @@ class Gcc43 < Formula
       args << "--with-ecj-jar=#{Formula.factory('ecj').opt_prefix}/share/java/ecj.jar"
     end
 
-    if build.include? 'enable-multilib'
-      args << '--enable-multilib'
-    else
-      args << '--disable-multilib'
-    end
 
     mkdir 'build' do
       unless MacOS::CLT.installed?
