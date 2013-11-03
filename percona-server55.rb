@@ -1,6 +1,6 @@
 require 'formula'
 
-class PerconaServer < Formula
+class PerconaServer55 < Formula
   homepage 'http://www.percona.com'
   url 'http://www.percona.com/redir/downloads/Percona-Server-5.5/Percona-Server-5.5.32-31.0/source/Percona-Server-5.5.32-rel31.0.tar.gz'
   version '5.5.32-31.0'
