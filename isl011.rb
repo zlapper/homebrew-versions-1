@@ -18,5 +18,6 @@ class Isl011 < Formula
                           "--with-gmp=system",
                           "--with-gmp-prefix=#{Formula.factory('gmp4').opt_prefix}"
     system "make install"
+    (share/"gdb/auto-load").install Dir["#{lib}/*-gdb.py"]
   end
 end
