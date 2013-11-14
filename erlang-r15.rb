@@ -26,7 +26,7 @@ class ErlangR15 < Formula
   url 'https://github.com/erlang/otp/archive/OTP_R15B03-1.tar.gz'
   sha1 '7843070f5d325f95ef13022fc416b22b6b14120d'
 
-  # remove the autoreconf if possible
+  depends_on :autoconf
   depends_on :automake
   depends_on :libtool
 

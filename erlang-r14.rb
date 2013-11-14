@@ -21,6 +21,9 @@ class ErlangR14 < Formula
   option 'time', '`brew test --time` to include a time-consuming test'
   option 'no-docs', 'Do not install documentation'
 
+  depends_on :autoconf
+  depends_on :automake
+  depends_on :libtool
 
   fails_with :llvm
 
