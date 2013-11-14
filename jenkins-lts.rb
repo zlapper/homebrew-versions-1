@@ -23,6 +23,7 @@ class JenkinsLts < Formula
         <key>ProgramArguments</key>
         <array>
           <string>/usr/bin/java</string>
+          <string>-Dmail.smtp.starttls.enable=true</string>
           <string>-jar</string>
           <string>#{opt_prefix}/libexec/jenkins.war</string>
           <string>--httpListenAddress=127.0.0.1</string>
