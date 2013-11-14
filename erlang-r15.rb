@@ -30,9 +30,7 @@ class ErlangR15 < Formula
   depends_on :automake
   depends_on :libtool
 
-  fails_with :llvm do
-    build 2334
-  end
+  fails_with :llvm
 
   option 'disable-hipe', "Disable building hipe; fails on various OS X systems"
   option 'halfword', 'Enable halfword emulator (64-bit builds only)'
@@ -41,12 +39,6 @@ class ErlangR15 < Formula
 
   def install
     ohai "Compilation takes a long time; use `brew install -v erlang` to see progress" unless ARGV.verbose?
-
-    if ENV.compiler == :llvm
-      # Don't use optimizations. Fixes build on Lion/Xcode 4.2
-      ENV.remove_from_cflags /-O./
-      ENV.append_to_cflags '-O0'
-    end
 
     # Do this if building from a checkout to generate configure
     system "./otp_build autoconf" if File.exist? "otp_build"
