@@ -27,7 +27,6 @@ class Postgresql8 < Formula
       --datadir=#{share}/#{name}
       --docdir=#{doc}
       --enable-thread-safety
-      --with-bonjour
       --with-gssapi
       --with-krb5
       --with-openssl
@@ -35,6 +34,7 @@ class Postgresql8 < Formula
       --with-libxslt
     ]
 
+    args << "--with-bonjour" unless MacOS.version >= :mavericks
     args << "--with-ossp-uuid" if build.with? 'ossp-uuid'
     args << "--with-python" unless build.include? 'no-python'
     args << "--with-perl" unless build.include? 'no-perl'
