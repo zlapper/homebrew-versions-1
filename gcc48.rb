@@ -50,7 +50,7 @@ class Gcc48 < Formula
 
   # GCC 4.8.1 incorrectly determines that _Unwind_GetIPInfo is available on
   # Tiger, resulting in a failed build
-  # Reported upstream: http://gcc.gnu.org/bugzilla/show_bug.cgi?id=58710
+  # Fixed upstream: http://gcc.gnu.org/bugzilla/show_bug.cgi?id=58710
   def patches; DATA; end if MacOS.version < :leopard
 
   def install
