@@ -79,9 +79,9 @@ class Subversion17 < Formula
       # scons ignores our compiler and flags unless explicitly passed
       args = %W[PREFIX=#{serf_prefix} GSSAPI=/usr CC=#{ENV.cc}
                 CFLAGS=#{ENV.cflags} LINKFLAGS=#{ENV.ldflags}]
-      args << "OPENSSL=#{Formula.factory('openssl').opt_prefix}" if build.with? 'homebrew-openssl'
-      system "scons", *args
-      system "scons install"
+      args << "OPENSSL=#{Formula["openssl"].opt_prefix}" if build.with? 'homebrew-openssl'
+      scons *args
+      scons "install"
     end
 
     # Java support doesn't build correctly in parallel:
@@ -109,7 +109,7 @@ class Subversion17 < Formula
             "--prefix=#{prefix}",
             "--with-apr=#{apr_bin}",
             "--with-zlib=/usr",
-            "--with-sqlite=#{Formula.factory('sqlite').opt_prefix}",
+            "--with-sqlite=#{Formula["sqlite"].opt_prefix}",
             "--with-serf=#{serf_prefix}",
             "--disable-neon-version-check",
             "--disable-mod-activation",
@@ -118,7 +118,7 @@ class Subversion17 < Formula
             "--without-berkeley-db"]
 
     if build.include? 'with-homebrew-openssl'
-      args << "--with-ssl=#{Formula.factory('openssl').opt_prefix}"
+      args << "--with-ssl=#{Formula["openssl"].opt_prefix}"
     else
       args << "--with-ssl"
     end

@@ -12,8 +12,8 @@ class CloogPpl015 < Formula
   depends_on 'ppl011'
 
   def install
-    gmp4 = Formula.factory 'gmp4'
-    ppl011 = Formula.factory 'ppl011'
+    gmp4 = Formula["gmp4"]
+    ppl011 = Formula["ppl011"]
 
     args = [
       "--prefix=#{prefix}",

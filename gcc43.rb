@@ -80,8 +80,8 @@ class Gcc43 < Formula
       "--enable-languages=#{languages.join(',')}",
       # Make most executables versioned to avoid conflicts.
       "--program-suffix=-#{version_suffix}",
-      "--with-gmp=#{Formula.factory('gmp4').opt_prefix}",
-      "--with-mpfr=#{Formula.factory('mpfr2').opt_prefix}",
+      "--with-gmp=#{Formula["gmp4"].opt_prefix}",
+      "--with-mpfr=#{Formula["mpfr2"].opt_prefix}",
       "--with-system-zlib",
       # This ensures lib, libexec, include are sandboxed so that they
       # don't wander around telling little children there is no Santa
@@ -99,7 +99,7 @@ class Gcc43 < Formula
     args << '--disable-nls' unless build.include? 'enable-nls'
 
     if build.include? 'enable-java' or build.include? 'enable-all-languages'
-      args << "--with-ecj-jar=#{Formula.factory('ecj').opt_prefix}/share/java/ecj.jar"
+      args << "--with-ecj-jar=#{Formula["ecj"].opt_prefix}/share/java/ecj.jar"
     end
 
 

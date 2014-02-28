@@ -22,7 +22,7 @@ class Guile18 < Formula
   def install
     system "./configure", "--disable-dependency-tracking",
                           "--prefix=#{prefix}",
-                          "--with-libreadline-prefix=#{Formula.factory('readline').opt_prefix}"
+                          "--with-libreadline-prefix=#{Formula["readline"].opt_prefix}"
     system "make install"
 
     # A really messed up workaround required on OS X --mkhl

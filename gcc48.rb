@@ -61,9 +61,7 @@ class Gcc48 < Formula
     ENV.delete 'LD'
 
     if MacOS.version < :leopard
-      as = Formula.factory('cctools').bin/'as'
-      ENV['AS'] = as
-      ENV['AS_FOR_TARGET'] = as
+      ENV["AS"] = ENV["AS_FOR_TARGET"] = "#{Formula["cctools"].bin}/as"
     end
 
     if build.include? 'enable-all-languages'
@@ -87,11 +85,11 @@ class Gcc48 < Formula
       "--enable-languages=#{languages.join(',')}",
       # Make most executables versioned to avoid conflicts.
       "--program-suffix=-#{version_suffix}",
-      "--with-gmp=#{Formula.factory('gmp4').opt_prefix}",
-      "--with-mpfr=#{Formula.factory('mpfr2').opt_prefix}",
-      "--with-mpc=#{Formula.factory('libmpc08').opt_prefix}",
-      "--with-cloog=#{Formula.factory('cloog018').opt_prefix}",
-      "--with-isl=#{Formula.factory('isl011').opt_prefix}",
+      "--with-gmp=#{Formula["gmp4"].opt_prefix}",
+      "--with-mpfr=#{Formula["mpfr2"].opt_prefix}",
+      "--with-mpc=#{Formula["libmpc08"].opt_prefix}",
+      "--with-cloog=#{Formula["cloog018"].opt_prefix}",
+      "--with-isl=#{Formula["isl011"].opt_prefix}",
       "--with-system-zlib",
       # This ensures lib, libexec, include are sandboxed so that they
       # don't wander around telling little children there is no Santa
@@ -117,7 +115,7 @@ class Gcc48 < Formula
     args << '--disable-nls' unless build.include? 'enable-nls'
 
     if build.include? 'enable-java' or build.include? 'enable-all-languages'
-      args << "--with-ecj-jar=#{Formula.factory('ecj').opt_prefix}/share/java/ecj.jar"
+      args << "--with-ecj-jar=#{Formula["ecj"].opt_prefix}/share/java/ecj.jar"
     end
 
     if build.include? 'disable-multilib'

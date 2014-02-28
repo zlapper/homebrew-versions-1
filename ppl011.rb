@@ -13,7 +13,7 @@ class Ppl011 < Formula
   depends_on 'gmp4'
 
   def install
-    gmp4 = Formula.factory 'gmp4'
+    gmp4 = Formula["gmp4"]
 
     args = [
       "--prefix=#{prefix}",

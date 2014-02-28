@@ -12,7 +12,7 @@ class Ppl10 < Formula
     args = [
       "--prefix=#{prefix}",
       "--disable-dependency-tracking",
-      "--with-gmp-prefix=#{Formula.factory('gmp4').opt_prefix}"
+      "--with-gmp-prefix=#{Formula["gmp4"].opt_prefix}"
     ]
 
     system "./configure", *args
