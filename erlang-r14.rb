@@ -1,15 +1,5 @@
 require 'formula'
 
-class ErlangR14Manuals < Formula
-  url 'http://erlang.org/download/otp_doc_man_R14B04.tar.gz'
-  sha1 '41f4ea59c9622e39b30882e173983252b6faca81'
-end
-
-class ErlangR14Htmls < Formula
-  url 'http://erlang.org/download/otp_doc_html_R14B04.tar.gz'
-  sha1 '86f76adee9bf953e5578d7998fda9e7dfc0d43f5'
-end
-
 class ErlangR14 < Formula
   homepage 'http://www.erlang.org'
   # Download tarball from GitHub; it is served faster than the official tarball.
@@ -26,6 +16,17 @@ class ErlangR14 < Formula
   depends_on :libtool
 
   fails_with :llvm
+
+  resource 'man' do
+    url 'http://erlang.org/download/otp_doc_man_R14B04.tar.gz'
+    sha1 '41f4ea59c9622e39b30882e173983252b6faca81'
+  end
+
+  resource 'html' do
+    url 'http://erlang.org/download/otp_doc_html_R14B04.tar.gz'
+    sha1 '86f76adee9bf953e5578d7998fda9e7dfc0d43f5'
+  end
+
 
   def install
     ohai "Compilation may take a very long time; use `brew install -v erlang` to see progress"
@@ -60,8 +61,8 @@ class ErlangR14 < Formula
     system "make install"
 
     unless build.include? 'no-docs'
-      ErlangR14Manuals.new.brew { man.install Dir['man/*'] }
-      ErlangR14Htmls.new.brew { doc.install Dir['*'] }
+      resource("man").stage { man.install Dir["man/*"] }
+      resource("html").stage { doc.install Dir["*"] }
     end
   end
 
