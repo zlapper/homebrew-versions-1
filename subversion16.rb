@@ -97,6 +97,9 @@ class Subversion16 < Formula
             "--disable-neon-version-check",
             "--disable-mod-activation",
             "--without-apache-libexecdir",
+            # Don't try to use httpd, because the one included
+            # with more recent versions of OS X is incompatible.
+            "--without-apxs",
             "--without-berkeley-db"]
 
     args << "--enable-javahl" << "--without-jikes" if build_java?
