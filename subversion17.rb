@@ -11,7 +11,6 @@ class Subversion17 < Formula
   option 'perl', 'Build Perl bindings'
   option 'ruby', 'Build Ruby bindings'
   option 'unicode-path', 'Include support for OS X UTF-8-MAC filename'
-  option 'with-homebrew-openssl', 'Include OpenSSL support via Homebrew'
 
   resource 'serf' do
     url 'http://serf.googlecode.com/files/serf-1.3.3.tar.bz2'
@@ -24,7 +23,7 @@ class Subversion17 < Formula
   depends_on 'neon'
   depends_on 'sqlite'
   depends_on :python => :optional
-  depends_on 'openssl' if build.include? 'with-homebrew-openssl'
+  depends_on 'openssl'
 
   # Building Ruby bindings requires libtool
   depends_on :libtool if build.include? 'ruby'
@@ -79,7 +78,7 @@ class Subversion17 < Formula
       # scons ignores our compiler and flags unless explicitly passed
       args = %W[PREFIX=#{serf_prefix} GSSAPI=/usr CC=#{ENV.cc}
                 CFLAGS=#{ENV.cflags} LINKFLAGS=#{ENV.ldflags}]
-      args << "OPENSSL=#{Formula["openssl"].opt_prefix}" if build.with? 'homebrew-openssl'
+      args << "OPENSSL=#{Formula["openssl"].opt_prefix}"
       scons *args
       scons "install"
     end
@@ -110,18 +109,13 @@ class Subversion17 < Formula
             "--with-apr=#{apr_bin}",
             "--with-zlib=/usr",
             "--with-sqlite=#{Formula["sqlite"].opt_prefix}",
+            "--with-ssl=#{Formula["openssl"].opt_prefix}",
             "--with-serf=#{serf_prefix}",
             "--disable-neon-version-check",
             "--disable-mod-activation",
             "--disable-nls",
             "--without-apache-libexecdir",
             "--without-berkeley-db"]
-
-    if build.include? 'with-homebrew-openssl'
-      args << "--with-ssl=#{Formula["openssl"].opt_prefix}"
-    else
-      args << "--with-ssl"
-    end
 
     args << "--enable-javahl" << "--without-jikes" if build.include? 'java'
 
