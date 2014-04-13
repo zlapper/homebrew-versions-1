@@ -22,8 +22,9 @@ class Gcc49 < Formula
   end
 
   homepage 'http://gcc.gnu.org'
-  url 'ftp://gcc.gnu.org/pub/gcc/snapshots/4.9-20140330/gcc-4.9-20140330.tar.bz2'
-  sha1 'ebe424891d2eb96b346b14fde25d99c68d6574c7'
+  url 'ftp://gcc.gnu.org/pub/gcc/snapshots/4.9.0-RC-20140411/gcc-4.9.0-RC-20140411.tar.bz2'
+  version '4.9.0rc1'
+  sha1 '1eb36b1e0a1bed5bd2ef4caeb4d4ffc2aa013b8b'
 
   head 'svn://gcc.gnu.org/svn/gcc/trunk'
 
