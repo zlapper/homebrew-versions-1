@@ -45,8 +45,6 @@ class Llvm35 < Formula
   depends_on 'cloog'
   depends_on 'libffi' => :recommended
 
-  env :std if build.universal?
-
   def ver; '3.5'; end # version suffix
 
   def install
@@ -82,6 +80,7 @@ class Llvm35 < Formula
     libcxxabi_buildpath.install resource('libcxxabi') if MacOS.version <= :snow_leopard and build.with? 'libcxx'
 
     if build.universal?
+      ENV.permit_arch_flags
       ENV['UNIVERSAL'] = '1'
       ENV['UNIVERSAL_ARCH'] = Hardware::CPU.universal_archs.join(' ')
     end
