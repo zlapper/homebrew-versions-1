@@ -10,7 +10,7 @@ class Maven30 < Formula
     rm_f Dir["bin/*.bat"]
 
     # Fix the permissions on the global settings file.
-    chmod 0644, Dir["conf/settings.xml"]
+    chmod 0644, "conf/settings.xml"
 
     prefix.install_metafiles
     libexec.install Dir['*']

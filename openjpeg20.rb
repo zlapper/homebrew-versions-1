@@ -2,7 +2,7 @@ require "formula"
 
 class Openjpeg20 < Formula
   homepage "http://www.openjpeg.org/"
-  url "http://openjpeg.googlecode.com/files/openjpeg-2.0.0.tar.gz"
+  url "https://openjpeg.googlecode.com/files/openjpeg-2.0.0.tar.gz"
   sha1 "0af78ab2283b43421458f80373422d8029a9f7a7"
 
   depends_on "cmake" => :build
