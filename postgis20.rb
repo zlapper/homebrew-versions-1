@@ -9,9 +9,9 @@ class Postgis20 < Formula
 
   keg_only 'Avoid conflict with main PostGIS package'
 
-  depends_on :autoconf
-  depends_on :automake
-  depends_on :libtool
+  depends_on "autoconf" => :build
+  depends_on "automake" => :build
+  depends_on "libtool" => :build
 
   depends_on 'gpp' => :build
   depends_on 'postgresql92'

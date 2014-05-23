@@ -26,7 +26,7 @@ class Subversion17 < Formula
   depends_on 'openssl'
 
   # Building Ruby bindings requires libtool
-  depends_on :libtool if build.include? 'ruby'
+  depends_on 'libtool' => :build if build.include? 'ruby'
 
   # For Serf
   depends_on 'scons' => :build

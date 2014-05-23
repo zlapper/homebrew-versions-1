@@ -12,8 +12,8 @@ class Mapnik071 < Formula
   depends_on 'proj'
   depends_on 'icu4c'
   depends_on 'boost'
+  depends_on 'freetype'
   depends_on 'cairomm' => :optional
-  depends_on :freetype
 
   def install
     # Allow compilation against boost 1.46
