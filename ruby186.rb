@@ -13,7 +13,7 @@ class Ruby186 < Formula
   keg_only :provided_by_osx
 
   option :universal
-  option 'with-suffix', 'Suffix commands with "20"'
+  option 'with-suffix', 'Suffix commands with "186"'
   option 'with-doc', 'Install documentation'
   option 'with-tcltk', 'Install with Tcl/Tk support'
 
@@ -34,7 +34,7 @@ class Ruby186 < Formula
 
   def install
     args = %W[--prefix=#{prefix} --enable-shared]
-    args << "--program-suffix=20" if build.with? "suffix"
+    args << "--program-suffix=186" if build.with? "suffix"
     args << "--with-arch=#{Hardware::CPU.universal_archs.join(',')}" if build.universal?
     args << "--with-out-ext=tk" if build.without? "tcltk"
     args << "--disable-install-doc" if build.without? "doc"
