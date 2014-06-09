@@ -184,7 +184,7 @@ class Gcc48 < Formula
       ]
 
       config_files.each do |file|
-        add_suffix file, version_suffix if File.exists? file
+        add_suffix file, version_suffix if File.exist? file
       end
     end
   end
