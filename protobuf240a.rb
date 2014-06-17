@@ -14,7 +14,7 @@ class Protobuf240a < Formula
   end
 
   # make it build with clang and libc++
-  def patches; DATA; end
+  patch :DATA
 
   def install
     # Don't build in debug mode. See:

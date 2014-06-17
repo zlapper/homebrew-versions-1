@@ -7,11 +7,9 @@ class Unison232 < Formula
 
   depends_on 'objective-caml'
 
-  def patches
-    #http://tech.groups.yahoo.com/group/unison-users/message/9348
-    #required for building 2.32.52 with ocamlc 3.12.x
-    DATA
-  end
+  # http://tech.groups.yahoo.com/group/unison-users/message/9348
+  # required for building 2.32.52 with ocamlc 3.12.x
+  patch :DATA
 
   def install
     ENV.j1

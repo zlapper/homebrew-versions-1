@@ -18,9 +18,7 @@ class Mysql51 < Formula
 
   fails_with :clang
 
-  def patches
-    DATA
-  end
+  patch :DATA
 
   def install
     # Make universal for bindings to universal applications
