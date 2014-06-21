@@ -10,13 +10,6 @@ class Elasticsearch090 < Formula
   end
 
   def install
-    if build.head?
-      # Build the package from source
-      system "mvn clean package -DskipTests"
-      # Extract the package to the current directory
-      system "tar --strip 1 -xzf target/releases/elasticsearch-*.tar.gz"
-    end
-
     # Remove Windows files
     rm_f Dir["bin/*.bat"]
 
@@ -29,11 +22,6 @@ class Elasticsearch090 < Formula
 
     # Remove unnecessary files
     rm_f Dir["#{lib}/sigar/*"]
-    if build.head?
-      rm_rf "#{prefix}/pom.xml"
-      rm_rf "#{prefix}/src/"
-      rm_rf "#{prefix}/target/"
-    end
 
     # Set up Elasticsearch for local development:
     inreplace "#{prefix}/config/elasticsearch.yml" do |s|

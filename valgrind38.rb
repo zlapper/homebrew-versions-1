@@ -37,7 +37,6 @@ class Valgrind38 < Formula
       args << "--enable-only32bit"
     end
 
-    system "./autogen.sh" if build.head?
     system "./configure", *args
     system 'make'
     system "make install"
