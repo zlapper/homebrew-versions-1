@@ -66,7 +66,7 @@ class Elasticsearch11 < Formula
     EOS
   end
 
-  plist_options :manual => "elasticsearch --config=#{HOMEBREW_PREFIX}/opt/elasticsearch/config/elasticsearch.yml"
+  plist_options :manual => "elasticsearch --config=#{HOMEBREW_PREFIX}/opt/elasticsearch11/config/elasticsearch.yml"
 
   def plist; <<-EOS.undent
       <?xml version="1.0" encoding="UTF-8"?>
@@ -79,7 +79,7 @@ class Elasticsearch11 < Formula
           <string>#{plist_name}</string>
           <key>ProgramArguments</key>
           <array>
-            <string>#{HOMEBREW_PREFIX}/bin/elasticsearch</string>
+            <string>#{prefix}/bin/elasticsearch</string>
             <string>--config=#{prefix}/config/elasticsearch.yml</string>
           </array>
           <key>EnvironmentVariables</key>
