@@ -72,9 +72,7 @@ class Llvm33 < Formula
 
   # Fix Makefile bug concerning MacOSX >= 10.10
   # See: http://llvm.org/bugs/show_bug.cgi?id=19951
-  if MacOS.version >= "10.10"
-     patch :DATA
-  end
+  patch :DATA
 
   option :universal
   option 'with-libcxx', 'Build libc++ standard library support'
