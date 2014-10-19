@@ -17,6 +17,7 @@ class Llvm32 < Formula
   depends_on 'gmp4'
   depends_on 'isl011'
   depends_on 'cloog018'
+  depends_on MaximumMacOSRequirement => :mountain_lion
 
   resource 'clang' do
     url 'http://llvm.org/releases/3.2/clang-3.2.src.tar.gz'
