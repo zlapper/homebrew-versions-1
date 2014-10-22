@@ -12,6 +12,7 @@ class Llvm31 < Formula
   option 'rtti', 'Build with C++ RTTI'
 
   depends_on :python => :recommended
+  depends_on MaximumMacOSRequirement => :mountain_lion
 
   resource 'clang' do
     url 'http://llvm.org/releases/3.1/clang-3.1.src.tar.gz'
