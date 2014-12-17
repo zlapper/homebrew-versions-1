@@ -44,7 +44,7 @@ class Llvm35 < Formula
   end
 
   head do
-    url 'http://llvm.org/git/llvm.git'
+    url "http://llvm.org/git/llvm.git", :branch => "release_35"
 
     resource 'clang' do
       url 'http://llvm.org/git/clang.git', :branch => 'release_35'
