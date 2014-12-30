@@ -268,7 +268,7 @@ class Llvm35 < Formula
     To link to libc++, something like the following is required:
       CXX="clang++-#{ver} -stdlib=libc++"
       CXXFLAGS="$CXXFLAGS -nostdinc++ -I#{opt_lib}/llvm-#{ver}/include/c++/v1"
-      LDFLAGS="$LDFLAGS -L#{opt_lib}/llvm-#{ver}/usr/lib"
+      LDFLAGS="$LDFLAGS -L#{opt_lib}/llvm-#{ver}/lib"
     EOS
   end
 end
