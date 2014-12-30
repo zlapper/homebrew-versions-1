@@ -1,5 +1,3 @@
-require 'formula'
-
 class Llvm33 < Formula
   homepage  'http://llvm.org/'
   revision 1
@@ -87,7 +85,6 @@ class Llvm33 < Formula
   option 'all-targets', 'Build all target backends'
   option 'disable-assertions', 'Speeds up LLVM, but provides less debug information'
 
-  depends_on :python => :recommended
   depends_on 'gmp4'
   depends_on 'isl011'
   depends_on 'cloog018'
@@ -99,10 +96,6 @@ class Llvm33 < Formula
   cxxstdlib_check :skip
 
   def install
-    if build.with? "python" and build.include? 'disable-shared'
-      raise 'The Python bindings need the shared library.'
-    end
-
     clang_buildpath = buildpath/"tools/clang"
     libcxx_buildpath = buildpath/"projects/libcxx"
     libcxxabi_buildpath = buildpath/"libcxxabi" # build failure if put in projects due to no Makefile
@@ -201,9 +194,8 @@ class Llvm33 < Formula
 
     (share/"clang-#{ver}/tools").install Dir["tools/clang/tools/scan-{build,view}"]
 
-    if build.with? "python"
-      (lib/"python2.7/site-packages").install "bindings/python/llvm" => "llvm-#{ver}", clang_buildpath/"bindings/python/clang" => "clang-#{ver}"
-    end
+    (lib/"python2.7/site-packages").install "bindings/python/llvm" => "llvm-#{ver}",
+      clang_buildpath/"bindings/python/clang" => "clang-#{ver}"
 
     Dir.glob(install_prefix/'bin/*') do |exec_path|
       basename = File.basename(exec_path)
