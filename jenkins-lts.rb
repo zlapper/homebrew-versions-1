@@ -1,16 +1,18 @@
-require "formula"
-
 class JenkinsLts < Formula
   homepage "http://jenkins-ci.org/#stable"
   url "http://mirrors.jenkins-ci.org/war-stable/1.580.3/jenkins.war"
   sha1 "18a8e6ea4a7723b10027ae51ed0196a0d994f622"
 
+  depends_on :java => "1.6+"
+
   conflicts_with "jenkins",
     :because => "both use the same data directory: $HOME/.jenkins"
 
   def install
-    libexec.install "jenkins.war"
+    system "jar", "xvf", "jenkins.war"
+    libexec.install Dir["jenkins.war", "WEB-INF/jenkins-cli.jar"]
     bin.write_jar_script libexec/"jenkins.war", "jenkins-lts"
+    bin.write_jar_script libexec/"jenkins-cli.jar", "jenkins-lts-cli"
   end
 
   plist_options :manual => "jenkins-lts"
