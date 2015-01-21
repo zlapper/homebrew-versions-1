@@ -133,7 +133,7 @@ class Llvm33 < Formula
       "--with-cloog=#{Formula["cloog018"].opt_prefix}"
     ]
 
-    if build.include? 'all-targets'
+    if build.include? 'all-targets' or build.with? "asan"
       args << '--enable-targets=all'
     else
       args << '--enable-targets=host'

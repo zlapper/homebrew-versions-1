@@ -183,7 +183,7 @@ class Llvm35 < Formula
       "--with-cloog=#{cloog_prefix}",
     ]
 
-    if build.with? "all-targets"
+    if build.with? "all-targets" or build.with? "asan"
       args << "--enable-targets=all"
     else
       args << "--enable-targets=host"
