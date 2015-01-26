@@ -30,6 +30,11 @@ class Llvm35 < Formula
       sha1 "9af270a79ae0aeb0628112073167495c43ab836a"
     end
 
+    resource "lldb" do
+      url "http://llvm.org/releases/3.5.1/lldb-3.5.1.src.tar.xz"
+      sha1 "32728e25e6e513528c8c793ae65981150bec7c0d"
+    end
+
     resource "libcxx" do
       url "http://llvm.org/releases/3.5.1/libcxx-3.5.1.src.tar.xz"
       sha1 "aa8d221f4db99f5a8faef6b594cbf7742cc55ad2"
@@ -71,6 +76,10 @@ class Llvm35 < Formula
       url "http://llvm.org/git/lld.git"
     end
 
+    resource "lldb" do
+      url "http://llvm.org/git/lldb.git"
+    end
+
     resource "libcxx" do
       url "http://llvm.org/git/libcxx.git", :branch => "release_35"
     end
@@ -94,8 +103,10 @@ class Llvm35 < Formula
 
   option :universal
   option "with-lld", "Build LLD linker"
+  option "with-lldb", "Build LLDB debugger"
   option "with-asan", "Include support for -faddress-sanitizer (from compiler-rt)"
   option "with-all-targets", "Build all target backends"
+  option "with-python", "Build lldb bindings against the python in PATH instead of system Python"
   option "without-shared", "Don't build LLVM as a shared library"
   option "without-assertions", "Speeds up LLVM, but provides less debug information"
 
@@ -111,6 +122,9 @@ class Llvm35 < Formula
 
   depends_on "gmp"
   depends_on "libffi" => :recommended
+
+  depends_on "swig" if build.with? "lldb"
+  depends_on :python => :optional
 
   # version suffix
   def ver
@@ -137,6 +151,7 @@ class Llvm35 < Formula
     (buildpath/"tools/polly").install resource("polly")
     (buildpath/"tools/clang/tools/extra").install resource("clang-tools-extra")
     (buildpath/"tools/lld").install resource("lld") if build.with? "lld"
+    (buildpath/"tools/lldb").install resource("lldb") if build.with? "lldb"
     (buildpath/"projects/compiler-rt").install resource("compiler-rt") if build.with? "asan"
 
     if build.universal?
@@ -247,6 +262,7 @@ class Llvm35 < Formula
 
     (lib/"python2.7/site-packages").install "bindings/python/llvm" => "llvm-#{ver}",
                                             clang_buildpath/"bindings/python/clang" => "clang-#{ver}"
+    (lib/"python2.7/site-packages").install_symlink install_prefix/"lib/python2.7/site-packages/lldb" => "lldb-#{ver}" if build.with? "lldb"
 
     Dir.glob(install_prefix/"bin/*") do |exec_path|
       basename = File.basename(exec_path)
