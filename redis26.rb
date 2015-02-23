@@ -1,4 +1,3 @@
-
 class Redis26 < Formula
   homepage "http://redis.io/"
   url "https://redis.googlecode.com/files/redis-2.6.14.tar.gz"
@@ -13,11 +12,11 @@ class Redis26 < Formula
 
   fails_with :llvm do
     build 2334
-    cause 'Fails with "reference out of range from _linenoise"'
+    cause "Fails with 'reference out of range from _linenoise'"
   end
 
   def install
-    # Architecture isn"t detected correctly on 32bit Snow Leopard without help
+    # Architecture isn't detected correctly on 32bit Snow Leopard without help
     ENV["OBJARCH"] = MacOS.prefer_64_bit? ? "-arch x86_64" : "-arch i386"
 
     # Head and stable have different code layouts
