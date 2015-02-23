@@ -1,6 +1,4 @@
-require "formula"
-
-class Hadoop252 < Formula
+class Hadoop25 < Formula
   homepage "http://hadoop.apache.org/"
   url "http://www.apache.org/dyn/closer.cgi?path=hadoop/common/hadoop-2.5.2/hadoop-2.5.2.tar.gz"
   sha1 "7571ad3f397e581697de5c8da74207cb1963e2be"
