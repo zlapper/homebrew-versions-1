@@ -91,6 +91,7 @@ class Boost155 < Formula
       sha256 "cb134e3982e01ba5b3d5abe51cc8343c9e24ecd34aa4d81f5e8dd4461f593cf1"
     end
   end
+
   bottle do
     root_url "https://homebrew.bintray.com/bottles-versions"
     cellar :any
@@ -98,7 +99,6 @@ class Boost155 < Formula
     sha256 "6cbbb3d9daa009bb930b7dabb2546a1dc668d30dd6109602d1ae6bfa52cdb2c3" => :mavericks
     sha256 "8d212d784b4491cde23aa1b587f588be81dfdf71414a8813e6eefb40f66042c1" => :mountain_lion
   end
-
 
   fails_with :llvm do
     build 2335
