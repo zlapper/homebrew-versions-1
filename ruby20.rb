@@ -1,22 +1,20 @@
-require 'formula'
-
 class Ruby20 < Formula
-  homepage 'https://www.ruby-lang.org/'
-  url 'http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p598.tar.bz2'
-  sha256 '67b2a93690f53e12b635ba1bcdbd41e8c5593f13d575fea92fdd8801ca088f0f'
+  homepage "https://www.ruby-lang.org/"
+  url "http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p598.tar.bz2"
+  sha256 "67b2a93690f53e12b635ba1bcdbd41e8c5593f13d575fea92fdd8801ca088f0f"
 
   option :universal
-  option 'with-suffix', 'Suffix commands with "20"'
-  option 'with-doc', 'Install documentation'
-  option 'with-tcltk', 'Install with Tcl/Tk support'
+  option "with-suffix", "Suffix commands with '20'"
+  option "with-doc", "Install documentation"
+  option "with-tcltk", "Install with Tcl/Tk support"
 
-  depends_on 'pkg-config' => :build
-  depends_on 'readline' => :recommended
-  depends_on 'gdbm' => :optional
-  depends_on 'libffi' => :optional
-  depends_on 'libyaml'
-  depends_on 'openssl'
-  depends_on :x11 if build.with? 'tcltk'
+  depends_on "pkg-config" => :build
+  depends_on "readline" => :recommended
+  depends_on "gdbm" => :optional
+  depends_on "libffi" => :optional
+  depends_on "libyaml"
+  depends_on "openssl"
+  depends_on :x11 if build.with? "tcltk"
 
   fails_with :llvm do
     build 2326
@@ -49,7 +47,7 @@ class Ruby20 < Formula
 
     system "./configure", *args
     system "make"
-    system "make install"
+    system "make", "install"
   end
 
   def post_install
@@ -123,5 +121,9 @@ class Ruby20 < Formula
       end
     end
     EOS
+  end
+
+  test do
+    system bin/"ruby", "--version"
   end
 end

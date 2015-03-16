@@ -1,5 +1,3 @@
-require "formula"
-
 class Ruby21 < Formula
   homepage "https://www.ruby-lang.org/"
   url "http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.bz2"
