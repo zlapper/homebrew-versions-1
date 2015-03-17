@@ -49,7 +49,7 @@ class Thrift090 < Formula
   option "with-php", "Install Php binding"
 
   def install
-    system "./bootstrap.sh" unless build.stable?
+    system "./bootstrap.sh" if build.head?
 
     args = ["--without-ruby", "--without-tests", "--without-php_extension"]
 
@@ -75,6 +75,6 @@ class Thrift090 < Formula
   end
 
   test do
-    system "#{bin}/thrift --version | grep 0.9.0"
+    assert_match /Thrift/, shell_output("#{bin}/thrift --version", 1)
   end
 end
