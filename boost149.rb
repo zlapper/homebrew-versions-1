@@ -63,7 +63,7 @@ class Boost149 < Formula
     # we specify libdir too because the script is apparently broken
     bargs = ["--prefix=#{prefix}", "--libdir=#{lib}", "--without-libraries=signals"]
 
-    if build.with? "icu"
+    if build.with? "icu4c"
       bargs << "--with-icu=#{Formula["icu4c"].opt_prefix}"
     else
       bargs << "--without-icu"
