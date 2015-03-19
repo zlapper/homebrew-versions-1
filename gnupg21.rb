@@ -105,6 +105,11 @@ class Gnupg21 < Formula
 
     For full details of the changes, please visit:
       https://www.gnupg.org/faq/whats-new-in-2.1.html
+
+    If you are upgrading to gnupg21 from gnupg2 you should execute:
+      `killall gpg-agent && gpg-agent --daemon --use-standard-socket`
+    After install. See:
+      https://github.com/Homebrew/homebrew-versions/issues/681
     EOS
   end
 
