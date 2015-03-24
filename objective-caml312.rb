@@ -11,8 +11,6 @@ class ObjectiveCaml312 < Formula
     sha256 "f529118355c17b749545898977a4e8e8f8ed5e72cb561e522fdf7516c0348d8a" => :mountain_lion
   end
 
-  option "with-x11", "Install with the Graphics module"
-
   depends_on :x11 # Mandatory or compile = nope.
 
   conflicts_with "objective-caml", :because => "both install an ocaml binary"
