@@ -1,28 +1,15 @@
 class Elasticsearch14 < Formula
   homepage "https://www.elastic.co/products/elasticsearch"
   url "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.4.tar.gz"
-  # sha256 computed from upstream sha1 "963415a9114ecf0b7dd1ae43a316e339534b8f31"
   sha256 "a3158d474e68520664debaea304be22327fc7ee1f410e0bfd940747b413e8586"
 
   depends_on :java => "1.7+"
-
-  head do
-    url "https://github.com/elasticsearch/elasticsearch.git"
-    depends_on "maven" => :build
-  end
 
   def cluster_name
     "elasticsearch_#{ENV["USER"]}"
   end
 
   def install
-    if build.head?
-      # Build the package from source
-      system "mvn", "clean", "package", "-DskipTests"
-      # Extract the package to the current directory
-      system "tar", "--strip", "1", "-xzf", "target/releases/elasticsearch-*.tar.gz"
-    end
-
     # Remove Windows files
     rm_f Dir["bin/*.bat"]
     rm_f Dir["bin/*.exe"]
@@ -36,11 +23,6 @@ class Elasticsearch14 < Formula
 
     # Remove unnecessary files
     rm_f Dir["#{lib}/sigar/*"]
-    if build.head?
-      rm_rf "#{prefix}/pom.xml"
-      rm_rf "#{prefix}/src/"
-      rm_rf "#{prefix}/target/"
-    end
 
     # Set up Elasticsearch for local development:
     inreplace "#{prefix}/config/elasticsearch.yml" do |s|
