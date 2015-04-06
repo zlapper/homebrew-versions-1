@@ -48,6 +48,7 @@ class Mysql51 < Formula
       --enable-thread-safe-client
       --enable-local-infile
       --enable-shared
+      --with-partition
     ]
 
     args << "--without-server" if build.without? "server"
