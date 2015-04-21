@@ -1,7 +1,7 @@
 class Node04 < Formula
   homepage "https://nodejs.org/"
   url "https://nodejs.org/dist/node-v0.4.12.tar.gz"
-  sha1 "1c6e34b90ad6b989658ee85e0d0cb16797b16460"
+  sha256 "c01af05b933ad4d2ca39f63cac057f54f032a4d83cff8711e42650ccee24fce4"
   revision 1
 
   bottle do
@@ -23,6 +23,9 @@ class Node04 < Formula
   # Fixes the build on 10.8, but 10.9 onwards is dead.
   # https://github.com/Homebrew/homebrew-versions/pull/665
   env :std
+
+  conflicts_with "node",
+    :because => "Differing versions of the same formulae."
 
   def install
     inreplace "wscript" do |s|
