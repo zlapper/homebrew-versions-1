@@ -1,7 +1,7 @@
 class Node06 < Formula
   homepage "https://nodejs.org/"
   url "https://nodejs.org/dist/v0.6.21/node-v0.6.21.tar.gz"
-  sha1 "31f564bf34c64b07cae3b9a88a87b4a08bab4dc5"
+  sha256 "22265fd07e09c22f1d058156d548e7398c9740210f534e2f848eeab5b9772117"
   revision 1
 
   bottle do
@@ -22,6 +22,9 @@ class Node06 < Formula
   end
 
   env :std
+
+  conflicts_with "node",
+    :because => "Differing versions of the same formulae."
 
   def install
     inreplace "wscript" do |s|
