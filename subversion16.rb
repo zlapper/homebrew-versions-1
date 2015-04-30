@@ -27,11 +27,12 @@ class Subversion16 < Formula
   depends_on "pkg-config" => :build
 
   # On Snow Leopard, build a new neon. For Leopard, the deps below include this.
+  # We don't use our OpenSSL because Neon refuses to support it due to wanting SSLv2
+  # and using a more recent Neon via disabling the version check results in segfauls at runtime.
   if MacOS.version >= :snow_leopard
     depends_on :apr => :build
     depends_on :python => :optional
     depends_on "scons" => :build
-    depends_on "openssl"
     depends_on :java => :optional
   end
 
@@ -108,7 +109,8 @@ class Subversion16 < Formula
       # Homebrew's Neon is too new and causes segfaults on all OS X versions now.
       resource("neon").stage do
         system "./configure", "--prefix=#{libexec}/neon", "--enable-shared",
-                              "--disable-static", "--disable-nls"
+                              "--disable-static", "--disable-nls", "--with-ssl=openssl",
+                              "--with-libs=/usr/lib"
         system "make", "install"
       end
 
