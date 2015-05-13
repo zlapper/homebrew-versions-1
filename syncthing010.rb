@@ -1,7 +1,8 @@
 class Syncthing010 < Formula
   homepage "https://syncthing.net/"
   url "https://github.com/syncthing/syncthing.git",
-    :tag => "v0.10.31", :revision => "2470875d1436a1757e07bec09e388b75d5ac12c0"
+      :tag => "v0.10.31",
+      :revision => "2470875d1436a1757e07bec09e388b75d5ac12c0"
 
   depends_on "go" => :build
   depends_on :hg => :build
