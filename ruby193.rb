@@ -1,20 +1,20 @@
-require 'formula'
-
 class Ruby193 < Formula
-  homepage 'http://www.ruby-lang.org/en/'
-  url 'http://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p551.tar.bz2'
-  sha256 'b0c5e37e3431d58613a160504b39542ec687d473de1d4da983dabcf3c5de771e'
+  homepage "https://www.ruby-lang.org/en/"
+  url "http://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p551.tar.bz2"
+  sha256 "b0c5e37e3431d58613a160504b39542ec687d473de1d4da983dabcf3c5de771e"
+  revision 1
 
   option :universal
-  option 'with-suffix', 'Suffix commands with "193"'
-  option 'with-doc', 'Install documentation'
-  option 'with-tcltk', 'Install with Tcl/Tk support'
+  option "with-suffix", "Suffix commands with '193'"
+  option "with-doc", "Install documentation"
+  option "with-tcltk", "Install with Tcl/Tk support"
 
-  depends_on 'pkg-config' => :build
-  depends_on 'readline'
-  depends_on 'gdbm'
-  depends_on 'libyaml'
-  depends_on :x11 if build.with? 'tcltk'
+  depends_on "pkg-config" => :build
+  depends_on "readline"
+  depends_on "gdbm"
+  depends_on "libyaml"
+  depends_on "openssl"
+  depends_on :x11 if build.with? "tcltk"
 
   fails_with :llvm do
     build 2326
@@ -22,6 +22,11 @@ class Ruby193 < Formula
 
   def install
     args = ["--prefix=#{prefix}", "--enable-shared"]
+
+    paths = [
+      Formula["libyaml"].opt_prefix,
+      Formula["openssl"].opt_prefix
+    ]
 
     if build.universal?
       ENV.universal_binary
@@ -31,11 +36,12 @@ class Ruby193 < Formula
     args << "--program-suffix=193" if build.with? "suffix"
     args << "--disable-tcltk-framework" <<  "--with-out-ext=tcl" <<  "--with-out-ext=tk" if build.without? "tcltk"
     args << "--disable-install-doc" if build.without? "doc"
+    args << "--with-opt-dir=#{paths.join(":")}"
 
     system "./configure", *args
     system "make"
-    system "make install"
-    system "make install-doc" if build.with? "doc"
+    system "make", "install"
+    system "make", "install-doc" if build.with? "doc"
   end
 
   def post_install
@@ -109,5 +115,11 @@ class Ruby193 < Formula
       end
     end
     EOS
+  end
+
+  test do
+    output = `#{bin}/ruby -e "puts 'hello'"`
+    assert_equal "hello\n", output
+    assert_equal 0, $?.exitstatus
   end
 end
