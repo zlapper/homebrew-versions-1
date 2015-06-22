@@ -2,9 +2,8 @@
 class Node010 < Formula
   desc "Platform built on V8 to build network applications"
   homepage "https://nodejs.org/"
-  url "https://nodejs.org/dist/v0.10.38/node-v0.10.38.tar.gz"
-  sha256 "513da8ed5e48abefdfab664f1cabc160238d314a0481148804aff8fc6552b78b"
-  revision 1
+  url "https://nodejs.org/dist/v0.10.39/node-v0.10.39.tar.gz"
+  sha256 "68f8d8f9515c4e77e2a06034b742e19e9848c1fee5bcadedc1d68f3e4302df37"
 
   bottle do
     root_url "https://homebrew.bintray.com/bottles-versions"
@@ -27,8 +26,8 @@ class Node010 < Formula
   end
 
   resource "npm" do
-    url "https://registry.npmjs.org/npm/-/npm-2.11.0.tgz"
-    sha256 "c35f1b89705d63e76c8548647b0fa016e0bedee899a51ba93895db1d5eda940b"
+    url "https://registry.npmjs.org/npm/-/npm-2.11.3.tgz"
+    sha256 "2979f9512116537be0f91ca86a5bf02627c160ed0f5e7e696b665592acb4bd0b"
   end
 
   conflicts_with "node",
@@ -54,7 +53,7 @@ class Node010 < Formula
       ENV.prepend_path "PATH", bin
 
       # make sure user prefix settings in $HOME are ignored
-      ENV["HOME"] = buildpath/"home"
+      ENV["HOME"] = buildpath/".brew_home"
 
       # set log level temporarily for npm's `make install`
       ENV["NPM_CONFIG_LOGLEVEL"] = "verbose"
@@ -94,7 +93,7 @@ class Node010 < Formula
       # Dirs must exist first: https://github.com/Homebrew/homebrew/issues/35969
       mkdir_p HOMEBREW_PREFIX/"share/man/#{man}"
       rm_f Dir[HOMEBREW_PREFIX/"share/man/#{man}/{npm.,npm-,npmrc.}*"]
-      ln_sf Dir[libexec/"npm/share/man/#{man}/npm*"], HOMEBREW_PREFIX/"share/man/#{man}"
+      ln_sf Dir[libexec/"npm/lib/node_modules/npm/man/#{man}/npm*"], HOMEBREW_PREFIX/"share/man/#{man}"
     end
 
     npm_root = node_modules/"npm"
