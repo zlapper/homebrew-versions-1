@@ -2,9 +2,9 @@
 # this version fixes Cpp11 problems about syntax and tr1 headers
 # All patches and this file can be found in this public gist:
 # https://gist.githubusercontent.com/rafaelverger/58b6eeafaae7d28b06cc
-
 class Thrift090 < Formula
-  homepage "http://thrift.apache.org"
+  desc "Framework for scalable cross-language services development"
+  homepage "https://thrift.apache.org"
   url "https://archive.apache.org/dist/thrift/0.9.0/thrift-0.9.0.tar.gz"
   sha256 "71d129c49a2616069d9e7a93268cdba59518f77b3c41e763e09537cb3f3f0aac"
 
@@ -33,20 +33,19 @@ class Thrift090 < Formula
     end
   end
 
-  depends_on "autoconf" => :build
-  depends_on "automake" => :build
-  depends_on "libtool" => :build
-  depends_on "pkg-config" => :build
-
-  depends_on "boost"
-  depends_on "openssl"
-  depends_on :python => :optional
-
   option "with-haskell", "Install Haskell binding"
   option "with-erlang", "Install Erlang binding"
   option "with-java", "Install Java binding"
   option "with-perl", "Install Perl binding"
   option "with-php", "Install Php binding"
+
+  depends_on "autoconf" => :build
+  depends_on "automake" => :build
+  depends_on "libtool" => :build
+  depends_on "pkg-config" => :build
+  depends_on "boost"
+  depends_on "openssl"
+  depends_on :python => :optional
 
   def install
     args = ["--without-ruby", "--without-tests", "--without-php_extension"]
