@@ -1,9 +1,12 @@
 class Solr14 < Formula
-  homepage "http://lucene.apache.org/solr/"
+  desc "Enterprise search platform from Apache Lucene project"
+  homepage "https://lucene.apache.org/solr/"
   url "https://archive.apache.org/dist/lucene/solr/1.4.1/apache-solr-1.4.1.tgz"
   sha256 "d795bc477335b3e29bab7073b385c93fca4be867aae345203da0d1e438d7543f"
 
   depends_on :java
+
+  conflicts_with "solr", :because => "Differing versions of same formula"
 
   def script; <<-EOS.undent
     #!/bin/sh
