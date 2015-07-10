@@ -1,9 +1,12 @@
 class Solr4 < Formula
+  desc "Enterprise search platform from Apache Lucene project"
   homepage "https://lucene.apache.org/solr/"
   url "https://archive.apache.org/dist/lucene/solr/4.10.4/solr-4.10.4.tgz"
   sha256 "ac3543880f1b591bcaa962d7508b528d7b42e2b5548386197940b704629ae851"
 
   depends_on :java
+
+  conflicts_with "solr", :because => "Differing versions of same formula"
 
   skip_clean "example/logs"
 
