@@ -18,10 +18,11 @@ brew install https://raw.githubusercontent.com/Homebrew/homebrew-versions/master
 
 You can read Homebrew’s Acceptable Formulae document [here](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Acceptable-Formulae.md). There are some differences between Homebrew/homebrew and here:
 
-* Versions formulae *cannot* have head or devel sections.
+* Versions formulae *usually* do not have head or devel sections.
 * Versions formulae *can* depend on other versions formulae.
 * Please remove any existing bottle block in your formula prior to submission.
 * If copied from Homebrew/homebrew prior formulae please remove any deprecated options and fix any issues raised by `brew audit —strict`.
+* If a newer/older version exists in Homebrew/homebrew please add a `conflicts_with` line, like [this](https://github.com/Homebrew/homebrew-versions/commit/c70582a2055ea6649cc1974076f57001f8c471a3).
 
 ## Troubleshooting
 First, please run `brew update` and `brew doctor`.
