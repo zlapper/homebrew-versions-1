@@ -40,9 +40,6 @@ class Subversion16 < Formula
     depends_on :java => :optional
   end
 
-  conflicts_with "openssl",
-                 :because => "You must unlink Homebrew's OpenSSL to install. You should `brew link openssl` after install!"
-
   # Homebrew's Swig is too new, Subversion throws a tantrum.
   resource "swig" do
     url "https://downloads.sourceforge.net/swig/swig-1.3.36.tar.gz"
