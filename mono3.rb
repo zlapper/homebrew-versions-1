@@ -1,4 +1,5 @@
 class Mono3 < Formula
+  desc "Cross platform, open source .NET development framework"
   homepage "http://www.mono-project.com/"
   url "http://download.mono-project.com/sources/mono/mono-3.12.1.tar.bz2"
   sha256 "5d8cf153af2948c06bc9fbf5088f6834868e4db8e5f41c7cff76da173732b60d"
@@ -24,7 +25,7 @@ class Mono3 < Formula
   def install
     # a working mono is required for the the build - monolite is enough
     # for the job
-    (buildpath+"mcs/class/lib/monolite").install resource("monolite")
+    (buildpath/"mcs/class/lib/monolite").install resource("monolite")
 
     args = %W[
       --prefix=#{prefix}
@@ -41,6 +42,12 @@ class Mono3 < Formula
     # mono-gdb.py and mono-sgen-gdb.py are meant to be loaded by gdb, not to be
     # run directly, so we move them out of bin
     libexec.install bin/"mono-gdb.py", bin/"mono-sgen-gdb.py"
+  end
+
+  def caveats; <<-EOS.undent
+    To use the assemblies from other formulae you need to set:
+      export MONO_GAC_PREFIX="#{HOMEBREW_PREFIX}"
+    EOS
   end
 
   test do
@@ -73,11 +80,5 @@ class Mono3 < Formula
       </Project>
     EOS
     shell_output "#{bin}/xbuild test.csproj"
-  end
-
-  def caveats; <<-EOS.undent
-    To use the assemblies from other formulae you need to set:
-      export MONO_GAC_PREFIX="#{HOMEBREW_PREFIX}"
-    EOS
   end
 end
