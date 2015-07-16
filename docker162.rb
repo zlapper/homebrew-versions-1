@@ -16,6 +16,8 @@ class Docker162 < Formula
 
   depends_on "go" => :build
 
+  conflicts_with "docker", :because => "Differing version of the same formula"
+
   def install
     ENV["AUTO_GOPATH"] = "1"
     ENV["DOCKER_CLIENTONLY"] = "1"
