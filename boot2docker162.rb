@@ -1,8 +1,9 @@
 class Boot2docker162 < Formula
   desc "boot2docker runs Docker containers on OSX"
   homepage "https://github.com/boot2docker/boot2docker-cli"
-  url "https://github.com/boot2docker/boot2docker-cli.git", :tag => "v1.6.2", :revision => "cb2c3bcc890d8ee67bb76cc91ecf5b63927c97f9"
-  head "https://github.com/boot2docker/boot2docker-cli.git"
+  url "https://github.com/boot2docker/boot2docker-cli.git",
+      :tag => "v1.6.2",
+      :revision => "cb2c3bcc890d8ee67bb76cc91ecf5b63927c97f9"
 
   bottle do
     cellar :any
