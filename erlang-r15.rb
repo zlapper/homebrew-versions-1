@@ -25,6 +25,8 @@ class ErlangR15 < Formula
   depends_on "openssl"
   depends_on "unixodbc" if MacOS.version >= :mavericks
 
+  conflicts_with "erlang", :because => "Different version of same formula"
+
   fails_with :llvm
 
   resource "man" do

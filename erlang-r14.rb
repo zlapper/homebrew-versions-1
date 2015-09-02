@@ -27,6 +27,8 @@ class ErlangR14 < Formula
   depends_on "unixodbc" if build.with? "odbc"
   depends_on "openssl"
 
+  conflicts_with "erlang", :because => "Different version of same formula"
+
   resource 'man' do
     url 'http://erlang.org/download/otp_doc_man_R14B04.tar.gz'
     sha1 '41f4ea59c9622e39b30882e173983252b6faca81'

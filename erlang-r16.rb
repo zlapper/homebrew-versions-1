@@ -18,6 +18,8 @@ class ErlangR16 < Formula
   depends_on "fop" => :optional # enables building PDF docs
   depends_on "wxmac" => :recommended # for GUI apps like observer
 
+  conflicts_with "erlang", :because => "Different version of same formula"
+
   fails_with :llvm
 
   option "without-hipe", "Disable building hipe; fails on various OS X systems"

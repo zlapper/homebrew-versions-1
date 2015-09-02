@@ -22,6 +22,8 @@ class ErlangR13 < Formula
   depends_on "openssl"
   depends_on "unixodbc" if MacOS.version >= :mavericks
 
+  conflicts_with "erlang", :because => "Different version of same formula"
+
   fails_with :llvm do
     build 2326
     cause "See: http://github.com/mxcl/homebrew/issues/issue/120"
@@ -58,7 +60,7 @@ class ErlangR13 < Formula
     args << "--enable-darwin-64bit" if MacOS.prefer_64_bit?
 
     system "./configure", *args
-    touch  "lib/wx/SKIP" if MacOS.version >= :snow_leopard
+    touch "lib/wx/SKIP" if MacOS.version >= :snow_leopard
     system "make"
     system "make", "install"
 
