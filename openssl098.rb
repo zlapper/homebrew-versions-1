@@ -2,7 +2,6 @@ class Openssl098 < Formula
   desc "OpenSSL SSL/TLS cryptography library"
   homepage "https://www.openssl.org"
   url "https://www.openssl.org/source/openssl-0.9.8zg.tar.gz"
-  mirror "https://raw.githubusercontent.com/DomT4/LibreMirror/master/OpenSSL/openssl-0.9.8zg.tar.gz"
   sha256 "06500060639930e471050474f537fcd28ec934af92ee282d78b52460fbe8f580"
 
   bottle do
