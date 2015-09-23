@@ -4,6 +4,12 @@ class Iojs < Formula
   url "https://iojs.org/dist/v3.3.1/iojs-v3.3.1.tar.xz"
   sha256 "c5b1a7117b75dca563f66c35ee65db6fc43e25a3756608ad2c4d60087314bd36"
 
+  bottle do
+    sha256 "8bad3933f41c806ff0c9a8a0bae3c07bcac4401cc0bf4c22d27f2eaac461bec3" => :el_capitan
+    sha256 "cecbb6ffd64df4a41e41c45ca40fbf5e2b69803eb0e78307b5443a4264d39bbf" => :yosemite
+    sha256 "334e1ac9b248c15918562b03bec52b1829eb99afed4e1eb9324238712f20d9f6" => :mavericks
+  end
+
   option "with-debug", "Build with debugger hooks"
   option "without-npm", "npm will not be installed"
   option "without-completion", "npm bash completion will not be installed"
