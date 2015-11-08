@@ -4,6 +4,8 @@ class Cassandra10 < Formula
   url "https://archive.apache.org/dist/cassandra/1.0.12/apache-cassandra-1.0.12-bin.tar.gz"
   sha256 "97f2896263960aa53faa201b07d5a89d531d5e2ab3d9d788e5fc5bc5e9ef985a"
 
+  bottle :unneeded
+
   conflicts_with "cassandra",
                  :because => "cassandra10 and cassandra install the same binaries."
 
