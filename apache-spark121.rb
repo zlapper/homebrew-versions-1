@@ -5,6 +5,8 @@ class ApacheSpark121 < Formula
   version "1.2.1"
   sha256 "8e618cf67b3090acf87119a96e5e2e20e51f6266c44468844c185122b492b454"
 
+  bottle :unneeded
+
   conflicts_with "hive", :because => "both install `beeline` binaries"
   conflicts_with "apache-spark", :because => "Both install the same binaries"
 
