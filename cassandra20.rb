@@ -4,6 +4,8 @@ class Cassandra20 < Formula
   url "https://archive.apache.org/dist/cassandra/2.0.11/apache-cassandra-2.0.11-bin.tar.gz"
   sha256 "f74c94e63c9dcb0cef6b627ea80ee0ad86da46ad7e7318bc6adf6821861d286b"
 
+  bottle :unneeded
+
   conflicts_with "cassandra",
     :because => "cassandra20 and cassandra install different versions of the same binaries."
 
