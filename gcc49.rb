@@ -19,6 +19,7 @@ class Gcc49 < Formula
     `uname -r`.chomp
   end
 
+  desc "The GNU Compiler Collection"
   homepage "https://gcc.gnu.org"
   url "http://ftpmirror.gnu.org/gcc/gcc-4.9.3/gcc-4.9.3.tar.bz2"
   mirror "https://ftp.gnu.org/gnu/gcc/gcc-4.9.3/gcc-4.9.3.tar.bz2"
@@ -32,7 +33,7 @@ class Gcc49 < Formula
     sha256 "fb567677b5f748b227346f15aa8a7c9084505f181610816f8286891f7fb10cdf" => :mountain_lion
   end
 
-  if MacOS.version >= :el_capitan
+  if MacOS.version >= :yosemite
     # Fixes build with Xcode 7.
     # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=66523
     patch do
