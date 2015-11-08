@@ -5,6 +5,8 @@ class ApacheSpark141 < Formula
   version "1.4.1"
   sha256 "9cde95349cccfeb99643d2dadb63f8e88ac355e0038aae7d5029142ce94ae370"
 
+  bottle :unneeded
+
   conflicts_with "apache-spark", :because => "Differing version of same formula"
 
   def install
