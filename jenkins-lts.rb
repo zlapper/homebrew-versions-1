@@ -3,7 +3,7 @@ class JenkinsLts < Formula
   url "http://mirrors.jenkins-ci.org/war-stable/1.625.2/jenkins.war"
   sha256 "ea061e63dc2970d37d5eab13aefe93f7d983a94729a8e9a89576dfa3bfed01d4"
 
-  depends_on :java => "1.6+"
+  depends_on :java => "1.7+"
 
   conflicts_with "jenkins",
     :because => "both use the same data directory: $HOME/.jenkins"
