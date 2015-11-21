@@ -1,4 +1,5 @@
 class Ansible14 < Formula
+  desc "Automate deployment, configuration, and upgrading"
   homepage "http://www.ansibleworks.com/"
   url "https://github.com/ansible/ansible/archive/v1.4.5.tar.gz"
   sha256 "61c35aad0d4ef668051652b8a5b84b6407016a5b1daa74b982889ff0fafddea0"
@@ -9,10 +10,10 @@ class Ansible14 < Formula
     sha256 "39f0c6b09e867e30332f82ac6b2e014a955550c70a8aad510f7d961878d2b431" => :mountain_lion
   end
 
+  option "with-accelerate", "Enable accelerated mode"
+
   depends_on :python
   depends_on "libyaml"
-
-  option "with-accelerate", "Enable accelerated mode"
 
   resource "pycrypto" do
     url "https://pypi.python.org/packages/source/p/pycrypto/pycrypto-2.6.tar.gz"
