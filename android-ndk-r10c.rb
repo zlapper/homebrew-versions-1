@@ -1,4 +1,5 @@
 class AndroidNdkR10c < Formula
+  desc "Android native-code language toolset"
   homepage "https://developer.android.com/sdk/ndk/index.html"
   version "r10c"
 
