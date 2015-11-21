@@ -1,4 +1,5 @@
 class AndroidNdkR9d < Formula
+  desc "Android native-code language toolset"
   homepage "https://developer.android.com/sdk/ndk/index.html"
   version "r9d"
 
