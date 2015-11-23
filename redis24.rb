@@ -1,9 +1,8 @@
-require 'formula'
-
 class Redis24 < Formula
-  homepage 'http://redis.io/'
-  url 'https://redis.googlecode.com/files/redis-2.4.18.tar.gz'
-  sha1 '7afdaede54ccd5b1a838776eb82b4c97fe7d5d17'
+  desc "Persistent key-value database with a net interface"
+  homepage "http://redis.io/"
+  url "https://redis.googlecode.com/files/redis-2.4.18.tar.gz"
+  sha256 "d71b6372f42fcbdc77a9601f1dd6a029ed57f7f77ac3b18bfed8670fb8c74697"
 
   fails_with :llvm do
     build 2334
@@ -15,7 +14,7 @@ class Redis24 < Formula
     ENV["OBJARCH"] = MacOS.prefer_64_bit? ? "-arch x86_64" : "-arch i386"
 
     # Head and stable have different code layouts
-    src = (buildpath/'src/Makefile').exist? ? buildpath/'src' : buildpath
+    src = (buildpath/"src/Makefile").exist? ? buildpath/"src" : buildpath
     system "make", "-C", src, "CC=#{ENV.cc}"
 
     %w[benchmark cli server check-dump check-aof].each { |p| bin.install src/"redis-#{p}" }
@@ -28,7 +27,7 @@ class Redis24 < Formula
       s.gsub! "\# bind 127.0.0.1", "bind 127.0.0.1"
     end
 
-    etc.install 'redis.conf' unless (etc/'redis.conf').exist?
+    etc.install "redis.conf" unless (etc/"redis.conf").exist?
   end
 
   plist_options :manual => "redis-server #{HOMEBREW_PREFIX}/etc/redis.conf"
