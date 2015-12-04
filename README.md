@@ -16,11 +16,17 @@ brew install https://raw.githubusercontent.com/Homebrew/homebrew-versions/master
 
 ## Acceptable Formulae.
 
+**Please note that `homebrew/versions` is currently in the process of major changes in what we support, how long for and on what basis.**
+
+Versions is not intended to be used for all and any old versions you personally require for xyz project; formulae submitted here should be expected to be used by a reasonable number of people and supported by contributors long-term.
+
+You may wish to consider hosting your own [tap](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/How-to-Create-and-Maintain-a-Tap.md) for formulae you wish to personally support that do not meet the above standards.
+
 You can read Homebrew’s Acceptable Formulae document [here](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Acceptable-Formulae.md). There are some differences between Homebrew/homebrew and here:
 
+* Versions formulae *must* not exceed +/-2 versions from the current stable release.
 * Versions formulae *usually* do not have head or devel sections.
 * Versions formulae *can* depend on other versions formulae.
-* Please remove any existing bottle block in your formula prior to submission.
 * If copied from Homebrew/homebrew prior formulae please remove any deprecated options and fix any issues raised by `brew audit --strict`.
 * If a newer/older version exists in Homebrew/homebrew please add a `conflicts_with` line, like [this](https://github.com/Homebrew/homebrew-versions/commit/c70582a2055ea6649cc1974076f57001f8c471a3).
 
