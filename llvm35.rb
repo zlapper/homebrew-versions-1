@@ -1,5 +1,5 @@
 class Llvm35 < Formula
-  desc "A next-gen compiler infrastructure"
+  desc "Next-gen compiler infrastructure"
   homepage "http://llvm.org/"
 
   stable do
