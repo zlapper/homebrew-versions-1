@@ -39,7 +39,7 @@ class Node08 < Formula
     #
     #   https://code.google.com/p/gyp/issues/detail?id=292
     #   joyent/node#3681
-    ENV["DEVELOPER_DIR"] = MacOS.dev_tools_path unless MacOS::Xcode.installed?
+    ENV["DEVELOPER_DIR"] = "#{OS::Mac.active_developer_dir}/usr/bin" unless MacOS::Xcode.installed?
 
     args = %W[--prefix=#{prefix} --without-npm --shared-openssl]
 
