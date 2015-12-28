@@ -1,4 +1,5 @@
 class Ruby186 < Formula
+  desc "Powerful, clean, object-oriented scripting language"
   homepage "https://www.ruby-lang.org/"
   url "http://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p420.tar.bz2"
   sha256 "5ed3e6b9ebcb51baf59b8263788ec9ec8a65fbb82286d952dd3eb66e22d9a09f"
