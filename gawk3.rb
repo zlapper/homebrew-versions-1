@@ -1,4 +1,5 @@
 class Gawk3 < Formula
+  desc "GNU awk utility"
   homepage "https://www.gnu.org/software/gawk/"
   url "http://ftpmirror.gnu.org/gawk/gawk-3.1.8.tar.bz2"
   mirror "https://ftp.gnu.org/gnu/gawk/gawk-3.1.8.tar.bz2"
