@@ -1,4 +1,5 @@
 class Hive010 < Formula
+  desc "Hadoop-based data summarization, query, and analysis"
   homepage "https://hive.apache.org"
   url "https://archive.apache.org/dist/hive/hive-0.10.0/hive-0.10.0-bin.tar.gz"
   sha256 "9a99ef0545758accaa30c0ede524bcaaaaeee12b115a9ca0ebf96fa72060abee"
