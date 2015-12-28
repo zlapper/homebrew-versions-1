@@ -1,4 +1,5 @@
 class Nu0 < Formula
+  desc "Object-oriented, Lisp-like programming language"
   homepage "http://programming.nu"
   # Upstream link used previously is dead - Using MacPorts mirror instead.
   url "https://distfiles.macports.org/nu/Nu-0.4.0.tgz"
