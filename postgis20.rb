@@ -2,6 +2,7 @@
 # https://github.com/Homebrew/homebrew-versions/pull/774
 
 class Postgis20 < Formula
+  desc "Adds support for geographic objects to PostgreSQL"
   homepage "http://postgis.net"
   url "http://download.osgeo.org/postgis/source/postgis-2.0.7.tar.gz"
   sha256 "35877fd5b591202941c2ae0a6f3fd84b0856649712f760375f17d9903c4c922a"
