@@ -1,4 +1,5 @@
 class Mysql51 < Formula
+  desc "Open source relational database management system"
   homepage "https://dev.mysql.com/doc/refman/5.1/en/"
   url "http://mysql.mirrors.pair.com/Downloads/MySQL-5.1/mysql-5.1.73.tar.gz"
   sha256 "05ebe21305408b24407d14b77607a3e5ffa3c300e03f1359d3066f301989dcb5"
