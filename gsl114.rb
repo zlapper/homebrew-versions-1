@@ -1,4 +1,5 @@
 class Gsl114 < Formula
+  desc "Numerical library for C and C++"
   homepage "https://www.gnu.org/software/gsl/"
   url "http://ftpmirror.gnu.org/gsl/gsl-1.14.tar.gz"
   mirror "https://ftp.gnu.org/gnu/gsl/gsl-1.14.tar.gz"
