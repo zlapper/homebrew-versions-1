@@ -1,5 +1,6 @@
 # This formula tracks GnuTLS stable-next. This is currently the 3.4.x branch.
 class Gnutls34 < Formula
+  desc "GNU Transport Layer Security (TLS) Library"
   homepage "http://gnutls.org"
   url "ftp://ftp.gnutls.org/gcrypt/gnutls/v3.4/gnutls-3.4.6.tar.xz"
   mirror "https://www.mirrorservice.org/sites/ftp.gnupg.org/gcrypt/gnutls/v3.4/gnutls-3.4.6.tar.xz"
