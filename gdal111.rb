@@ -1,4 +1,5 @@
 class Gdal111 < Formula
+  desc "GDAL: Geospatial Data Abstraction Library"
   homepage "http://www.gdal.org/"
 
   stable do
