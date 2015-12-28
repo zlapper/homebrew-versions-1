@@ -1,6 +1,7 @@
 require "language/haskell"
 
 class Pandoc1131 < Formula
+  desc "Swiss-army knife of markup format conversion"
   include Language::Haskell::Cabal
 
   homepage "http://johnmacfarlane.net/pandoc/"
