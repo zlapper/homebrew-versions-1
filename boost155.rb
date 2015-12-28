@@ -23,6 +23,7 @@ class UniversalPython3 < Requirement
 end
 
 class Boost155 < Formula
+  desc "Collection of portable C++ source libraries"
   homepage "http://www.boost.org"
   revision 1
 
