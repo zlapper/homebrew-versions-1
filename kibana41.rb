@@ -4,6 +4,12 @@ class Kibana41 < Formula
   url "https://github.com/elastic/kibana.git", :tag => "v4.1.4", :revision => "3df681b3f205b2b75e11ddf68c0985f80460d7bc"
   head "https://github.com/elastic/kibana.git"
 
+  bottle do
+    sha256 "abdc7a48eb0123e9942ec7cac51194682f760799d5f03f27c3a28673fb6dda5c" => :el_capitan
+    sha256 "3a715512faf54f477792a656227dd02c952efab6a6d6f410349b5f9ccaad9f6d" => :yosemite
+    sha256 "a9d3a8e678f4ad263d79eed44702f380d3adf5c52bdaaf29946eae03fbe2b28f" => :mavericks
+  end
+
   conflicts_with "kibana", :because => "Different versions of same formula"
 
   resource "node" do
